@@ -601,6 +601,18 @@ public class FloatPoint implements java.io.Serializable
         return (" (" + nf.format(x) + " , " + nf.format(y) + ") ");
     }
     
+    public String to_stringShort(java.util.Locale p_locale)
+    {
+        java.text.NumberFormat nf =  java.text.NumberFormat.getInstance(p_locale);
+        nf.setMaximumFractionDigits(3);
+        nf.setGroupingUsed(false);
+        int siz=nf.format(x).length()+nf.format(y).length();
+        if (siz >16) nf.setMaximumFractionDigits(0);
+        else if (siz >12) nf.setMaximumFractionDigits(1);
+        else if (siz >10) nf.setMaximumFractionDigits(3);
+        return (" (" + nf.format(x) + " , " + nf.format(y) + ") ");
+    }
+
     public String toString()
     {
         return to_string(java.util.Locale.ENGLISH);

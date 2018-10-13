@@ -127,7 +127,7 @@ public class ScreenMessages
         {
             return;
         }
-        this.mouse_position.setText(p_pos.to_string(this.locale));
+        this.mouse_position.setText(p_pos.to_stringShort(this.locale));
     }
     
     /**

@@ -67,13 +67,13 @@ class BoardPanelStatus extends javax.swing.JPanel
         
         javax.swing.JPanel cursor_panel = new javax.swing.JPanel();
         cursor_panel.setLayout(new java.awt.BorderLayout());
-        cursor_panel.setMinimumSize(new java.awt.Dimension(220, 14));
-        cursor_panel.setPreferredSize(new java.awt.Dimension(220, 14));
+        cursor_panel.setMinimumSize(new java.awt.Dimension(250, 14));
+        cursor_panel.setPreferredSize(new java.awt.Dimension(250, 14));
         
         javax.swing.JLabel cursor = new javax.swing.JLabel();
         cursor.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cursor.setText(resources.getString("cursor"));
-        cursor.setMaximumSize(new java.awt.Dimension(100, 14));
+        cursor.setMaximumSize(new java.awt.Dimension(80, 14));
         cursor.setMinimumSize(new java.awt.Dimension(50, 14));
         cursor.setPreferredSize(new java.awt.Dimension(50, 14));
         cursor_panel.add(cursor, java.awt.BorderLayout.WEST);
@@ -82,7 +82,7 @@ class BoardPanelStatus extends javax.swing.JPanel
         mouse_position.setText("(0,0)");
         mouse_position.setMaximumSize(new java.awt.Dimension(170, 14));
         mouse_position.setPreferredSize(new java.awt.Dimension(170, 14));
-        cursor_panel.add(mouse_position, java.awt.BorderLayout.EAST);
+        cursor_panel.add(mouse_position, java.awt.BorderLayout.CENTER);
         
         right_message_panel.add(cursor_panel, java.awt.BorderLayout.EAST);
         

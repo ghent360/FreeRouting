@@ -36,10 +36,8 @@ public class DesignFile
 
     public static DesignFile get_instance(String p_design_file_name)
     {
-        if (p_design_file_name == null)
-        {
-            return null;
-        }
+        if (p_design_file_name == null) return null;
+
         DesignFile result = new DesignFile(new java.io.File(p_design_file_name), null);
         return result;
     }
@@ -55,10 +53,8 @@ public class DesignFile
         file_chooser.setFileFilter(file_filter);
         file_chooser.showOpenDialog(null);
         java.io.File curr_design_file = file_chooser.getSelectedFile();
-        if (curr_design_file == null)
-        {
-            return null;
-        }
+        if (curr_design_file == null) return null;
+
         result = new DesignFile( curr_design_file, file_chooser);
         return result;
     }

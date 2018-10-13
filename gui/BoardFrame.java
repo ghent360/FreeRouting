@@ -462,7 +462,7 @@ public class BoardFrame extends javax.swing.JFrame
         this.setLocation(120, 0);
         
         this.select_parameter_window.setLocation(0, 0);
-        this.select_parameter_window.setVisible(true);
+        //this.select_parameter_window.setVisible(true);
         
         this.route_parameter_window.setLocation(0, 100);
         this.autoroute_parameter_window.setLocation(0, 200);

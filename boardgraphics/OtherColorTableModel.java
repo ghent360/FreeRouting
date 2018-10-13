@@ -35,8 +35,8 @@ public class OtherColorTableModel extends ColorTableModel implements java.io.Ser
         super(1, p_locale);
         data[0] = new Color [ColumnNames.values().length];
         Object[] curr_row = data[0];
-        curr_row[ColumnNames.BACKGROUND.ordinal()] = new Color(70, 70, 70);
-        curr_row[ColumnNames.HIGHLIGHT.ordinal()] = Color.white;
+        curr_row[ColumnNames.BACKGROUND.ordinal()] = new Color(0, 0, 0);
+        curr_row[ColumnNames.HIGHLIGHT.ordinal()] = new Color(230,255,255);
         curr_row[ColumnNames.INCOMPLETES.ordinal()] = Color.white;
         curr_row[ColumnNames.OUTLINE.ordinal()] = new Color(100, 150, 255);
         curr_row[ColumnNames.VIOLATIONS.ordinal()] = Color.magenta;

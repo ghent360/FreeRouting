@@ -37,10 +37,10 @@ public class MainApplication extends javax.swing.JFrame
     public static void main(String p_args[])
     {
         boolean designFileAsParameter = false;
-        boolean test_version_option = false;
+        boolean debugOption = false;
         boolean autoSaveSpectraSessionFileOnExit = false;
-        String design_file_name = null;
-        String design_dir_name = null;
+        String designFileName = null;
+        String designDirName = null;
         java.util.Locale current_locale = java.util.Locale.ENGLISH;
         for (int i = 0; i < p_args.length; ++i)
         {
@@ -50,7 +50,7 @@ public class MainApplication extends javax.swing.JFrame
                 if (p_args.length > i + 1 && !p_args[i + 1].startsWith("-"))
                 {
                     designFileAsParameter = true;
-                    design_file_name = p_args[i + 1];
+                    designFileName = p_args[i + 1];
                 }
             }
             else if (p_args[i].startsWith("-di"))
@@ -58,7 +58,7 @@ public class MainApplication extends javax.swing.JFrame
             {
                 if (p_args.length > i + 1 && !p_args[i + 1].startsWith("-"))
                 {
-                    design_dir_name = p_args[i + 1];
+                    designDirName = p_args[i + 1];
                 }
             }
             else if (p_args[i].startsWith("-l"))
@@ -73,9 +73,13 @@ public class MainApplication extends javax.swing.JFrame
             {
                 autoSaveSpectraSessionFileOnExit = true;
             }
-            else if (p_args[i].startsWith("-test"))
+            else if (p_args[i].startsWith("-t"))
             {
-                test_version_option = true;
+                debugOption = true;
+            }
+            else if (p_args[i].startsWith("-debug"))
+            {
+                debugOption = true;
             }
             else if (p_args[i].startsWith("-h")||p_args[i].startsWith("--help"))
             {
@@ -85,7 +89,7 @@ public class MainApplication extends javax.swing.JFrame
                 System.out.println("-di  design folder used in file dialog");
                 System.out.println("-l   provide locale");
                 System.out.println("-s   spectra session file is automatic saved on exit");
-                System.out.println("-t   test option");
+                System.out.println("-t   debug option");
                 System.out.println("-h   this help");
                 return;
             }
@@ -95,23 +99,23 @@ public class MainApplication extends javax.swing.JFrame
         if (designFileAsParameter)
         {
 
-            DesignFile design_file = DesignFile.get_instance(design_file_name);
+            DesignFile design_file = DesignFile.get_instance(designFileName);
             if (design_file == null)
             {
                 System.out.print(resources.getString("message_6") + " ");
-                System.out.print(design_file_name);
+                System.out.print(designFileName);
                 System.out.println(" " + resources.getString("message_7"));
                 return;
             }
-            String message = resources.getString("loading_design") + " " + design_file_name;
+            String message = resources.getString("loading_design") + " " + designFileName;
             WindowMessage welcome_window = WindowMessage.show(message);
             final BoardFrame new_frame =
-                    create_board_frame(design_file, autoSaveSpectraSessionFileOnExit, test_version_option, current_locale);
+                    create_board_frame(design_file, autoSaveSpectraSessionFileOnExit, debugOption, current_locale);
             welcome_window.dispose();
             if (new_frame == null)
             {
                 System.out.print(resources.getString("message_6") + " ");
-                System.out.print(design_file_name);
+                System.out.print(designFileName);
                 System.out.println(" " + resources.getString("message_7"));
                 Runtime.getRuntime().exit(1);
             }
@@ -126,7 +130,7 @@ public class MainApplication extends javax.swing.JFrame
         else
         {
 
-            DesignFile design_file = DesignFile.open_dialog(design_dir_name);
+            DesignFile design_file = DesignFile.open_dialog(designDirName);
 
             if (design_file == null)
             {
@@ -139,12 +143,10 @@ public class MainApplication extends javax.swing.JFrame
             WindowMessage welcome_window = WindowMessage.show(message);
             welcome_window.setTitle(message);
             BoardFrame new_frame =
-                    create_board_frame(design_file, autoSaveSpectraSessionFileOnExit, test_version_option, current_locale);
+                    create_board_frame(design_file, autoSaveSpectraSessionFileOnExit, debugOption, current_locale);
             welcome_window.dispose();
-            if (new_frame == null)
-            {
-                Runtime.getRuntime().exit(1);
-            }
+            if (new_frame == null) Runtime.getRuntime().exit(1);
+
             new_frame.addWindowListener(new java.awt.event.WindowAdapter()
             {
                 public void windowClosed(java.awt.event.WindowEvent evt)
@@ -171,22 +173,14 @@ public class MainApplication extends javax.swing.JFrame
         java.io.InputStream input_stream = p_design_file.get_input_stream();
         if (input_stream == null) return null;
 
-
         TestLevel test_level;
-        if (p_is_test_version)
-        {
-            test_level = DEBUG_LEVEL;
-        }
-        else
-        {
-            test_level = TestLevel.RELEASE_VERSION;
-        }
+        if (p_is_test_version) test_level = TestLevel.CRITICAL_DEBUGGING_OUTPUT;
+        else test_level = TestLevel.RELEASE_VERSION;
+
         BoardFrame new_frame = new BoardFrame(p_design_file, autoSaveSpectraSessionFileOnExit, test_level, p_locale);
         boolean read_ok = new_frame.read(input_stream, p_design_file.is_created_from_text_file(), null);
-        if (!read_ok)
-        {
-            return null;
-        }
+        if (!read_ok)  return null;
+
         //new_frame.menubar.add_design_dependent_items();
         if (p_design_file.is_created_from_text_file())
         {
@@ -207,15 +201,8 @@ public class MainApplication extends javax.swing.JFrame
     public MainApplication(){
     }
 
-
-
-
-    /** The list of open board frames */
-    private String design_dir_name = null;
-    private static final TestLevel DEBUG_LEVEL = TestLevel.CRITICAL_DEBUGGING_OUTPUT;
-
     /**
      * Change this string when creating a new version
      */
-    static final String VERSION_NUMBER_STRING = "1.2.44";
+    static final String VERSION_NUMBER_STRING = "1.2.45";
 }
