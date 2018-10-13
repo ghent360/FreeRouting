@@ -33,7 +33,7 @@ import geometry.planar.PolylineShape;
  */
 public class CoordinateTransform implements java.io.Serializable
 {
-    
+    private static final long serialVersionUID = 7524472765628777231L;
     /**
      * Creates a new instance of CoordinateTransform.
      * The base point of the dsn coordinate system will be translated to zero in the board

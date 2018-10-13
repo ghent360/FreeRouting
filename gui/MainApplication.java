@@ -38,6 +38,7 @@ public class MainApplication extends javax.swing.JFrame
     {
         boolean designFileAsParameter = false;
         boolean debugOption = false;
+        boolean whiteBackground = false;
         boolean autoSaveSpectraSessionFileOnExit = false;
         String designFileName = null;
         String designDirName = null;
@@ -81,6 +82,10 @@ public class MainApplication extends javax.swing.JFrame
             {
                 debugOption = true;
             }
+            else if (p_args[i].startsWith("-white"))
+            {
+                whiteBackground = true;
+            }
             else if (p_args[i].startsWith("-h")||p_args[i].startsWith("--help"))
             {
                 System.out.println("FreeRouting version "+VERSION_NUMBER_STRING);
@@ -90,6 +95,7 @@ public class MainApplication extends javax.swing.JFrame
                 System.out.println("-l   provide locale");
                 System.out.println("-s   spectra session file is automatic saved on exit");
                 System.out.println("-t   debug option");
+                System.out.println("-white   white background");
                 System.out.println("-h   this help");
                 return;
             }
@@ -109,7 +115,7 @@ public class MainApplication extends javax.swing.JFrame
             }
             String message = resources.getString("loading_design") + " " + designFileName;
             WindowMessage welcomeWindow = WindowMessage.show(message);
-            final BoardFrame newFrame = createBoardFrame(designFile, autoSaveSpectraSessionFileOnExit, debugOption, currentLocale);
+            final BoardFrame newFrame = createBoardFrame(designFile, autoSaveSpectraSessionFileOnExit, debugOption, currentLocale, whiteBackground);
             welcomeWindow.dispose();
             if (newFrame == null)
             {
@@ -141,7 +147,7 @@ public class MainApplication extends javax.swing.JFrame
             String message = resources.getString("loading_design") + " " + designFile.get_name();
             WindowMessage welcomeWindow = WindowMessage.show(message);
             welcomeWindow.setTitle(message);
-            BoardFrame newFrame = createBoardFrame(designFile, autoSaveSpectraSessionFileOnExit, debugOption, currentLocale);
+            BoardFrame newFrame = createBoardFrame(designFile, autoSaveSpectraSessionFileOnExit, debugOption, currentLocale, whiteBackground);
             welcomeWindow.dispose();
             if (newFrame == null) Runtime.getRuntime().exit(1);
 
@@ -163,7 +169,7 @@ public class MainApplication extends javax.swing.JFrame
      * Returns null, if an error occured.
      */
     static private BoardFrame createBoardFrame(DesignFile designFile,
-            boolean autoSaveSpectraSessionFileOnExit, boolean debugOption, java.util.Locale currentLocale)
+            boolean autoSaveSpectraSessionFileOnExit, boolean debugOption, java.util.Locale currentLocale, boolean whiteBackground)
     {
         java.util.ResourceBundle resources = java.util.ResourceBundle.getBundle("gui.resources.MainApplication", currentLocale);
 
@@ -174,7 +180,7 @@ public class MainApplication extends javax.swing.JFrame
         if (debugOption) testLevel = TestLevel.CRITICAL_DEBUGGING_OUTPUT;
         else testLevel = TestLevel.RELEASE_VERSION;
 
-        BoardFrame newFrame = new BoardFrame(designFile, autoSaveSpectraSessionFileOnExit, testLevel, currentLocale);
+        BoardFrame newFrame = new BoardFrame(designFile, autoSaveSpectraSessionFileOnExit, testLevel, currentLocale, whiteBackground);
         boolean read_ok = newFrame.read(inputStream, designFile.is_created_from_text_file(), null);
         if (!read_ok)  return null;
 
@@ -199,5 +205,5 @@ public class MainApplication extends javax.swing.JFrame
     /**
      * Change this string when creating a new version
      */
-    static final String VERSION_NUMBER_STRING = "1.2.46";
+    static final String VERSION_NUMBER_STRING = "1.3.1";
 }

@@ -27,7 +27,7 @@ package gui;
  */
 public class PopupMenuDynamicRoute extends PopupMenuDisplay
 {
-    
+    private static final long serialVersionUID = 7524472765628777176L;
     /** Creates a new instance of RoutePopupMenu */
     PopupMenuDynamicRoute(BoardFrame p_board_frame)
     {

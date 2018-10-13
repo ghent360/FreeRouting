@@ -27,6 +27,7 @@ package interactive;
  */
 public class SnapShot implements java.io.Serializable
 {
+    private static final long serialVersionUID = 7524472765628777199L;
     /**
      * Returns a new snapshot or null, if the current interactive state
      * is not suitable to generate a snapshot.
@@ -190,6 +191,7 @@ public class SnapShot implements java.io.Serializable
      */
     public static class Attributes implements java.io.Serializable
     {
+        private static final long serialVersionUID = 7524472765628777200L;
         Attributes()
         {
             object_colors = true;

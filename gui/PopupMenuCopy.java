@@ -27,7 +27,7 @@ package gui;
  */
 public class PopupMenuCopy extends PopupMenuDisplay
 {
-    
+    private static final long serialVersionUID = 7524472765628777174L;
     /** Creates a new instance of CopyPopupMenu */
     PopupMenuCopy(BoardFrame p_board_frame)
     {

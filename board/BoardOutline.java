@@ -38,7 +38,7 @@ import boardgraphics.GraphicsContext;
  */
 public class BoardOutline extends Item implements java.io.Serializable
 {
-
+    private static final long serialVersionUID = 7524472765628777251L;
     /** Creates a new instance of BoardOutline */
     public BoardOutline(PolylineShape[] p_shapes, int p_clearance_class_no, int p_id_no, BasicBoard p_board)
     {

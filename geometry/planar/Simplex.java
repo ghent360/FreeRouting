@@ -31,7 +31,7 @@ import java.util.LinkedList;
 
 public class Simplex extends TileShape implements java.io.Serializable
 {
-    
+    private static final long serialVersionUID = 7524472765628777172L;
     /**
      * Standard implementation for an empty Simplex.
      */

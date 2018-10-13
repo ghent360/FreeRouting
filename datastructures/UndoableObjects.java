@@ -35,6 +35,7 @@ import java.util.Vector;
 public class UndoableObjects implements java.io.Serializable
 {
 
+    private static final long serialVersionUID = 7524472765628777162L;
     /** Creates a new instance of UndoableObjectsList */
     public UndoableObjects()
     {
@@ -402,7 +403,7 @@ public class UndoableObjects implements java.io.Serializable
      */
     public static class UndoableObjectNode implements java.io.Serializable
     {
-
+        private static final long serialVersionUID = 7524472765628777252L;
         /** Creates a new instance of UndoableObjectNode */
         UndoableObjectNode(Storable p_object, int p_level)
         {

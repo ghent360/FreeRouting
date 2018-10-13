@@ -27,7 +27,7 @@ package gui;
  */
 public abstract class BoardSavableSubWindow extends BoardSubWindow
 {
-    
+    private static final long serialVersionUID = 7524472765628777218L;
     /**
      * Reads the data of this frame from disc.
      * Returns false, if the reading failed.
@@ -79,6 +79,7 @@ public abstract class BoardSavableSubWindow extends BoardSubWindow
      */
     static private class SavedAttributes implements java.io.Serializable
     {
+        private static final long serialVersionUID = 7524472765628777219L;
         public SavedAttributes(java.awt.Rectangle p_bounds, boolean p_is_visible)
         {
             bounds = p_bounds;

@@ -27,6 +27,7 @@ package rules;
 public class NetClass implements java.io.Serializable, board.ObjectInfoPanel.Printable
 {
 
+    private static final long serialVersionUID = 7524472765628777190L;
     /** Creates a new instance of NetClass */
     public NetClass(String p_name, board.LayerStructure p_layer_structure, ClearanceMatrix p_clearance_matrix)
     {

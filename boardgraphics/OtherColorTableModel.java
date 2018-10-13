@@ -29,7 +29,9 @@ import java.awt.Color;
  */
 public class OtherColorTableModel extends ColorTableModel implements java.io.Serializable
 {
-    
+    private static final long serialVersionUID = 7524472765628777238L;
+    public static boolean whiteBackground=false;
+
     public OtherColorTableModel(java.util.Locale p_locale)
     {
         super(1, p_locale);
@@ -38,6 +40,11 @@ public class OtherColorTableModel extends ColorTableModel implements java.io.Ser
         curr_row[ColumnNames.BACKGROUND.ordinal()] = new Color(0, 0, 0);
         curr_row[ColumnNames.HIGHLIGHT.ordinal()] = new Color(230,255,255);
         curr_row[ColumnNames.INCOMPLETES.ordinal()] = Color.white;
+        if (this.whiteBackground) {
+            curr_row[ColumnNames.BACKGROUND.ordinal()] = new Color(255, 255, 255);
+            curr_row[ColumnNames.HIGHLIGHT.ordinal()] = new Color(0,235,255);
+            curr_row[ColumnNames.INCOMPLETES.ordinal()] = Color.black;
+        }
         curr_row[ColumnNames.OUTLINE.ordinal()] = new Color(100, 150, 255);
         curr_row[ColumnNames.VIOLATIONS.ordinal()] = Color.magenta;
         curr_row[ColumnNames.COMPONENT_FRONT.ordinal()] = Color.blue;

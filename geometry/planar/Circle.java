@@ -27,7 +27,7 @@ package geometry.planar;
  */
 public class Circle implements ConvexShape, java.io.Serializable
 {
-    
+    private static final long serialVersionUID = 7524472765628777230L;
     /** Creates a new instance of Circle */
     public Circle(IntPoint p_center, int p_radius)
     {

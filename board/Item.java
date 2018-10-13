@@ -47,7 +47,7 @@ import datastructures.ShapeTree.TreeEntry;
  */
 public abstract class Item implements Drawable, SearchTreeObject, ObjectInfoPanel.Printable, UndoableObjects.Storable, Serializable
 {
-
+    private static final long serialVersionUID = 7524472765628777237L;
     /**
      * Implements the comparable interface.
      */

@@ -43,6 +43,7 @@ import library.Padstack;
  */
 public class Pin extends DrillItem implements java.io.Serializable
 {
+    private static final long serialVersionUID = 7524472765628777181L;
     /** Creates a new instance of Pin with the input parameters.
      *  (p_to_layer - p_from_layer + 1) shapes must be provided.
      *  p_pin_no isthe number  of the pin in its component (starting with 0).

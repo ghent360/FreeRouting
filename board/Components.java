@@ -39,6 +39,7 @@ import library.Package;
  */
 public class Components implements java.io.Serializable
 {
+    private static final long serialVersionUID = 7524472765628777246L;
     /**
      * Inserts a component into the list.
      * The items of the component have to be inserted seperately into the board.

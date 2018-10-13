@@ -32,6 +32,7 @@ import geometry.planar.ConvexShape;
  */
 public class Padstacks implements java.io.Serializable
 {
+    private static final long serialVersionUID = 7524472765628777184L;
     /** Creates a new instance of Padstacks */
     public Padstacks(board.LayerStructure p_layer_structure)
     {

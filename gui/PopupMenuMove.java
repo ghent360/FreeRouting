@@ -30,7 +30,7 @@ package gui;
  */
 public class PopupMenuMove extends PopupMenuDisplay
 {
-    
+    private static final long serialVersionUID = 7524472765628777175L;
     /** Creates a new instance of PopupMenuMove */
     public PopupMenuMove(BoardFrame p_board_frame)
     {

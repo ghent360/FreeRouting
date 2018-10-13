@@ -43,7 +43,7 @@ import library.Padstack;
  */
 public abstract class DrillItem extends Item implements Connectable, java.io.Serializable
 {
-    
+    private static final long serialVersionUID = 7524472765628777179L;
     public DrillItem( Point p_center, int[] p_net_no_arr, int p_clearance_type, int p_id_no,
             int p_group_no, FixedState p_fixed_state, BasicBoard p_board)
     {

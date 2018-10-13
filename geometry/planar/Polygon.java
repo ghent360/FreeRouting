@@ -31,6 +31,7 @@ import java.util.LinkedList;
 
 public class Polygon implements java.io.Serializable
 {
+    private static final long serialVersionUID = 7524472765628777223L;
     /**
      * Creates a polygon from p_point_arr.
      * Multiple points and points, which are collinear with its previous

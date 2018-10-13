@@ -31,6 +31,7 @@ import geometry.planar.Vector;
  */
 public class ComponentObstacleArea extends ObstacleArea
 {
+    private static final long serialVersionUID = 7524472765628777248L;
     /**
      * Creates a new instance of  ComponentObstacleArea
      * If p_is_obstacle ist false, the new instance is not regarded as obstacle and used only for displaying on the screen.

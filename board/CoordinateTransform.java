@@ -29,7 +29,7 @@ import geometry.planar.FloatPoint;
  */
 public class CoordinateTransform implements java.io.Serializable
 {
-    
+    private static final long serialVersionUID = 7524472765628777244L;
     /** Creates a new instance of CoordinateTransform */
     public CoordinateTransform(double p_user_unit_factor, Unit p_user_unit,
             double p_board_unit_factor, Unit p_board_unit)

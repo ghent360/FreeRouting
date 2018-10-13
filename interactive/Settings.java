@@ -30,6 +30,7 @@ import board.RoutingBoard;
  */
 public class Settings implements java.io.Serializable
 {
+    private static final long serialVersionUID = 7524472765628777201L;
     /** Creates a new interactive settings variable. */
     public Settings(RoutingBoard p_board,  Logfile p_logfile)
     {

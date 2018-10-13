@@ -51,6 +51,7 @@ import java.awt.geom.AffineTransform;
 
 public class GraphicsContext implements java.io.Serializable
 {
+    private static final long serialVersionUID = 7524472765628777240L;
     public GraphicsContext( IntBox p_design_bounds,
             Dimension p_panel_bounds, board.LayerStructure p_layer_structure, java.util.Locale p_locale)
     {

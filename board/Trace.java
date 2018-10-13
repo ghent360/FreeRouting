@@ -36,7 +36,7 @@ import java.util.TreeSet;
 
 public abstract class Trace extends Item implements Connectable, java.io.Serializable
 {
-    
+    private static final long serialVersionUID = 7524472765628777233L;
     Trace(int p_layer, int p_half_width, int[] p_net_no_arr, int p_clearance_type,
             int p_id_no, int p_group_no, FixedState p_fixed_state, BasicBoard p_board)
     {

@@ -30,7 +30,7 @@ package gui;
  */
 public class PopupMenuDisplay extends javax.swing.JPopupMenu
 {
-    
+    private static final long serialVersionUID = 7524472765628777173L;
     /** Creates a new instance of PopupMenuDisplay */
     public PopupMenuDisplay(BoardFrame p_board_frame)
     {

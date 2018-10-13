@@ -31,7 +31,7 @@ import datastructures.Signum;
 
 public class IntVector extends Vector implements java.io.Serializable
 {
-    
+    private static final long serialVersionUID = 7524472765628777169L;
     /**
      * creates an  IntVector from two integer coordinates
      */

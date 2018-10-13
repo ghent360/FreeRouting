@@ -30,7 +30,7 @@ import geometry.planar.Vector;
  */
 public class ViaObstacleArea extends ObstacleArea
 {
-    
+    private static final long serialVersionUID = 7524472765628777232L;
     /**
      * Creates a new area item which may belong to several nets
      */

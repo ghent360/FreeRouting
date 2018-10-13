@@ -28,7 +28,7 @@ package gui;
  */
 public class BoardSubWindow extends javax.swing.JFrame
 {
-  
+   private static final long serialVersionUID = 7524472765628777215L;
     public void parent_iconified()
     {
         this.visible_before_iconifying = this.isVisible();

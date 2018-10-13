@@ -30,6 +30,7 @@ import java.util.LinkedList;
  */
 public class ViaInfos implements java.io.Serializable, board.ObjectInfoPanel.Printable
 {
+    private static final long serialVersionUID = 7524472765628777180L;
     /**
      * Adds a via info consisting of padstack, clearance class and drill_to_smd_allowed.
      * Return false, if the insertion failed, for example if the name existed already.

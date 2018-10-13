@@ -29,7 +29,7 @@ import java.awt.Color;
  */
 public class ItemColorTableModel extends ColorTableModel implements java.io.Serializable
 {
-    
+    private static final long serialVersionUID = 7524472765628777239L;
     public ItemColorTableModel(board.LayerStructure p_layer_structure, java.util.Locale p_locale)
     {
         super(p_layer_structure.arr.length, p_locale);

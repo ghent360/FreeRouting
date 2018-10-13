@@ -38,7 +38,7 @@ import library.Padstack;
  */
 public class Via extends DrillItem implements java.io.Serializable
 {
-
+    private static final long serialVersionUID = 7524472765628777185L;
     /** Creates a new instance of Via with the input parameters*/
     public Via(Padstack p_padstack, Point p_center, int[] p_net_no_arr, int p_clearance_type, int p_id_no,
             int p_group_no, FixedState p_fixed_state, boolean p_attach_allowed, BasicBoard p_board)

@@ -27,7 +27,7 @@ package gui;
  */
 public class WindowAutorouteParameter extends BoardSavableSubWindow
 {
-
+    private static final long serialVersionUID = 7524472765628777212L;
     /** Creates a new instance of WindowAutorouteParameter */
     public WindowAutorouteParameter(BoardFrame p_board_frame)
     {

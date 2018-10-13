@@ -31,7 +31,7 @@ import datastructures.UndoableObjects;
  */
 public class WindowClearanceMatrix extends BoardSavableSubWindow
 {
-    
+    private static final long serialVersionUID = 7524472765628777210L;
     /** Creates a new instance of ClearanceMatrixWindow */
     public WindowClearanceMatrix(BoardFrame p_board_frame)
     {
@@ -326,6 +326,7 @@ public class WindowClearanceMatrix extends BoardSavableSubWindow
      */
     private class ClearanceTableModel extends javax.swing.table.AbstractTableModel implements java.io.Serializable
     {
+        private static final long serialVersionUID = 7524472765628777211L;
         public ClearanceTableModel(interactive.BoardHandling p_board_handling)
         {
             rules.ClearanceMatrix clearance_matrix = p_board_handling.get_routing_board().rules.clearance_matrix;

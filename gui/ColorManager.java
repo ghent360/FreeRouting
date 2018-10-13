@@ -51,7 +51,7 @@ import boardgraphics.GraphicsContext;
  */
 public class ColorManager extends BoardSavableSubWindow
 {
-    
+    private static final long serialVersionUID = 7524472765628777256L;
     /** Creates a new instance of ColorManager */
     public ColorManager(BoardFrame p_board_frame)
     {

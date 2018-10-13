@@ -29,7 +29,7 @@ package geometry.planar;
  */
 public abstract class RegularTileShape extends TileShape
 {
-    
+    private static final long serialVersionUID = 7524472765628777154L;
     /**
      * Compares the edglines of index p_edge_no of this regular TileShape
      * and p_other.

@@ -27,7 +27,7 @@ package gui;
  */
 class BoardToolbar extends javax.swing.JPanel
 {
-    
+    private static final long serialVersionUID = 7524472765628777214L;
     /** Creates a new instance of BoardToolbarPanel */
     BoardToolbar(BoardFrame p_board_frame)
     {

@@ -29,7 +29,7 @@ import java.util.Collection;
  */
 public class WindowRouteParameter extends BoardSavableSubWindow
 {
-    
+    private static final long serialVersionUID = 7524472765628777206L;
     /** Creates a new instance of RouteParameterWindow */
     public WindowRouteParameter(BoardFrame p_board_frame)
     {

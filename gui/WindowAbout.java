@@ -29,6 +29,7 @@ package gui;
  */
 public class WindowAbout extends BoardSavableSubWindow
 {
+    private static final long serialVersionUID = 7524472765628777213L;
     public WindowAbout(java.util.Locale p_locale)
     {
         java.util.ResourceBundle resources =

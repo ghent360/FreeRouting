@@ -27,7 +27,7 @@ package board;
  */
 public class Layer implements java.io.Serializable
 {
-    
+    private static final long serialVersionUID = 7524472765628777235L;
     /** Creates a new instance of Layer */
     public Layer(String p_name, boolean p_is_signal)
     {

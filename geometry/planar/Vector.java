@@ -33,6 +33,7 @@ import datastructures.Signum;
 
 public abstract class Vector implements java.io.Serializable
 {
+    private static final long serialVersionUID = 7524472765628777167L;
     
     /**
      * returns true, if this vector is equal to the zero vector.

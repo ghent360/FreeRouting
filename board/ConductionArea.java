@@ -38,7 +38,7 @@ import java.util.TreeSet;
  */
 public class ConductionArea extends ObstacleArea implements Connectable
 {
-    
+    private static final long serialVersionUID = 7524472765628777245L;
     /** Creates a new instance of ConductionArea */
     ConductionArea(Area p_area, int p_layer, Vector p_translation, double p_rotation_in_degree, boolean p_side_changed,
             int[] p_net_no_arr, int p_clearance_class, int p_id_no, int p_group_no, String p_name, boolean p_is_obstacle,

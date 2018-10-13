@@ -43,7 +43,7 @@ import datastructures.BigIntAux;
 
 public class RationalPoint extends Point implements java.io.Serializable
 {
-    
+    private static final long serialVersionUID = 7524472765628777171L;
     /**
      * approximates the coordinates of this point by float coordinates
      */

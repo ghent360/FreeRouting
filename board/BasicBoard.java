@@ -55,6 +55,7 @@ import datastructures.UndoableObjects;
 public class BasicBoard implements java.io.Serializable
 {
 
+    private static final long serialVersionUID = 7524472765628777156L;
     /**
      * Creates a new instance of a routing Board with surrrounding box
      * p_bounding_box

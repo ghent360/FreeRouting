@@ -37,7 +37,7 @@ import designformats.specctra.DsnFile;
 
 public class BoardFrame extends javax.swing.JFrame
 {
-
+   private static final long serialVersionUID = 7524472765628777220L;
     
     
     /**
@@ -46,11 +46,11 @@ public class BoardFrame extends javax.swing.JFrame
      * Also the warning output depends on p_test_level.
      */
     public BoardFrame(DesignFile p_design, boolean autoSaveSpectraSessionFileOnExit_, TestLevel p_test_level,
-            java.util.Locale p_locale)
+            java.util.Locale p_locale, boolean whiteBackground)
     {
         this(p_design, autoSaveSpectraSessionFileOnExit_ , p_test_level,
                 new board.BoardObserverAdaptor(), new board.ItemIdNoGenerator(),
-                p_locale);
+                p_locale, whiteBackground);
     }
     
     /**
@@ -59,7 +59,7 @@ public class BoardFrame extends javax.swing.JFrame
      * if the frame is embedded into a host system,
      */
     BoardFrame(DesignFile p_design, boolean autoSaveSpectraSessionFileOnExit_, TestLevel p_test_level, BoardObservers p_observers,
-            datastructures.IdNoGenerator p_item_id_no_generator, java.util.Locale p_locale)
+            datastructures.IdNoGenerator p_item_id_no_generator, java.util.Locale p_locale, boolean whiteBackground)
     {
         this.design_file = p_design;
         this.test_level = p_test_level;
@@ -92,13 +92,15 @@ public class BoardFrame extends javax.swing.JFrame
         this.scroll_pane.setVerifyInputWhenFocusTarget(false);
         this.add(scroll_pane, java.awt.BorderLayout.CENTER);
         
-        this.board_panel = new BoardPanel(screen_messages, this, p_locale);
+        this.board_panel = new BoardPanel(screen_messages, this, p_locale,whiteBackground);
         this.scroll_pane.setViewportView(board_panel);
         
         this.setTitle(resources.getString("title"));
         this.addWindowListener(new WindowStateListener());
         
         this.pack();
+
+
     }
     
     /**
@@ -737,6 +739,7 @@ public class BoardFrame extends javax.swing.JFrame
      */
     public static class SubwindowSelections implements java.io.Serializable
     {
+        private static final long serialVersionUID = 7524472765628777221L;
         private WindowObjectListWithFilter.SnapshotInfo incompletes_selection;
         private WindowObjectListWithFilter.SnapshotInfo packages_selection;
         private WindowObjectListWithFilter.SnapshotInfo nets_selection;

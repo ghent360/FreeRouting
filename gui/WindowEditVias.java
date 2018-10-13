@@ -31,7 +31,7 @@ import rules.BoardRules;
  */
 public class WindowEditVias extends BoardSavableSubWindow
 {
-    
+    private static final long serialVersionUID = 7524472765628777208L;
     /** Creates a new instance of ViaTablePanel */
     public WindowEditVias(BoardFrame p_board_frame)
     {
@@ -209,6 +209,7 @@ public class WindowEditVias extends BoardSavableSubWindow
      */
     private class ViaTableModel extends javax.swing.table.AbstractTableModel
     {
+        private static final long serialVersionUID = 7524472765628777209L;
         public ViaTableModel()
         {
             column_names = new String[ColumnName.values().length];

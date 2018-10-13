@@ -28,6 +28,7 @@ import datastructures.Signum;
  */
 public class LineSegment implements java.io.Serializable
 {
+    private static final long serialVersionUID = 7524472765628777225L;
 
     /**
      * Creates a line segment from the 3 input lines.

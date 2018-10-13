@@ -32,6 +32,7 @@ import java.util.LinkedList;
  */
 public abstract class PolylineShape implements Shape, java.io.Serializable
 {
+    private static final long serialVersionUID = 7524472765628777152L;
     /**
      * returns true, if the the shape has no infinite part at this corner
      */

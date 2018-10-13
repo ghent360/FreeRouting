@@ -30,6 +30,7 @@ import java.math.BigInteger;
 
 public abstract class Point implements java.io.Serializable
 {
+    private static final long serialVersionUID = 7524472765628777148L;
     
     /**
      * returns the translation of this point by p_vector

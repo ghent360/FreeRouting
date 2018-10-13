@@ -29,7 +29,7 @@ import board.ItemSelectionFilter;
  */
 public class WindowSelectParameter extends BoardSavableSubWindow
 {
-    
+    private static final long serialVersionUID = 7524472765628777205L;
     /** Creates a new instance of SelectWindow */
     public WindowSelectParameter(BoardFrame p_board_frame)
     {

@@ -30,6 +30,7 @@ import geometry.planar.ConvexShape;
  */
 public class BoardRules implements java.io.Serializable
 {
+    private static final long serialVersionUID = 7524472765628777164L;
     /**
      * Creates a new instance of this class.
      */

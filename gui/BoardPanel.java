@@ -22,6 +22,7 @@ package gui;
 
 import interactive.BoardHandling;
 import interactive.ScreenMessages;
+import boardgraphics.OtherColorTableModel;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -43,10 +44,10 @@ import javax.swing.event.TableModelListener;
  */
 public class BoardPanel extends javax.swing.JPanel
 {
-    
+    private static final long serialVersionUID = 7524472765628777155L;
     /** Creates a new BoardPanel in an Application */
     public BoardPanel(ScreenMessages p_screen_messages, BoardFrame p_board_frame,
-             java.util.Locale p_locale)
+             java.util.Locale p_locale, boolean whiteBackground)
     {
         screen_messages = p_screen_messages;
         try
@@ -60,14 +61,18 @@ public class BoardPanel extends javax.swing.JPanel
         }
         board_frame = p_board_frame;
         this.scroll_pane = board_frame.scroll_pane;
-        default_init(p_locale);
+        default_init(p_locale, whiteBackground);
     }
     
-    private void default_init(java.util.Locale p_locale)
+    private void default_init(java.util.Locale p_locale,boolean whiteBackground)
     {
         setLayout(new java.awt.BorderLayout());
         
         setBackground(new java.awt.Color(0, 0, 0));
+        if (whiteBackground) {
+            setBackground(new java.awt.Color(255, 255, 255));
+            OtherColorTableModel.whiteBackground=true;
+        }
         setMaximumSize(new java.awt.Dimension(30000, 20000));
         setMinimumSize(new java.awt.Dimension(90, 60));
         setPreferredSize(new java.awt.Dimension(1200, 900));

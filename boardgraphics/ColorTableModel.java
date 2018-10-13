@@ -29,6 +29,7 @@ import javax.swing.table.AbstractTableModel;
 public abstract class ColorTableModel extends AbstractTableModel
 {
 
+    private static final long serialVersionUID = 7524472765628777242L;
     protected ColorTableModel(int p_row_count, java.util.Locale p_locale)
     {
         this.data = new Object[p_row_count] [];

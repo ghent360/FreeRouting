@@ -28,7 +28,7 @@ package boardgraphics;
  */
 public class ColorIntensityTable implements java.io.Serializable
 {
-    
+    private static final long serialVersionUID = 7524472765628777243L;
     /**
      * Creates a new instance of ColorIntensityTable.
      * The elements of p_intensities are expected between 0 and 1.

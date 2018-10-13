@@ -32,7 +32,7 @@ import datastructures.Signum;
 public class IntDirection extends Direction implements java.io.Serializable
 {
     
-    
+    private static final long serialVersionUID = 7524472765628777226L;
     public boolean is_orthogonal()
     {
         return ( x == 0 || y == 0 ) ;

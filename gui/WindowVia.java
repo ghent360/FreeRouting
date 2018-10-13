@@ -32,7 +32,7 @@ import board.Layer;
  */
 public class WindowVia extends BoardSavableSubWindow
 {
-    
+    private static final long serialVersionUID = 7524472765628777203L;
     /** Creates a new instance of ViaWindow */
     public WindowVia(BoardFrame p_board_frame)
     {
@@ -363,6 +363,7 @@ public class WindowVia extends BoardSavableSubWindow
     /** Internal class used in AddPadstackListener */
     private class PadstackInputPanel extends javax.swing.JPanel
     {
+        private static final long serialVersionUID = 7524472765628777204L;
         PadstackInputPanel(Layer p_from_layer, Layer p_to_layer, Double p_default_radius)
         {
             java.awt.GridBagLayout gridbag = new java.awt.GridBagLayout();

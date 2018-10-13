@@ -38,6 +38,7 @@ import library.Package;
  */
 public class Component implements UndoableObjects.Storable, ObjectInfoPanel.Printable, java.io.Serializable
 {
+    private static final long serialVersionUID = 7524472765628777249L;
     /**
      * Creates a new instance of Component with the input parameters.
      * If p_on_front is false, the component will be placed on the back side.

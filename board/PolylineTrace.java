@@ -48,7 +48,7 @@ import boardgraphics.GraphicsContext;
  */
 public class PolylineTrace extends Trace implements java.io.Serializable
 {
-
+    private static final long serialVersionUID = 7524472765628777182L;
     /**
      * creates a new instance of a PolylineTrace with the input data
      */

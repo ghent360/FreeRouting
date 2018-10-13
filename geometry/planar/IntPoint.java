@@ -33,6 +33,7 @@ import java.math.BigInteger;
 public class IntPoint extends Point implements java.io.Serializable
 {
     
+    private static final long serialVersionUID = 7524472765628777149L;
     /**
      * create an  IntPoint from two integer coordinates
      */

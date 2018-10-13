@@ -30,6 +30,7 @@ import java.util.TreeSet;
  */
 public class ItemSelectionFilter implements java.io.Serializable
 {
+    private static final long serialVersionUID = 7524472765628777236L;
     /**
      * The possible choices in the filter.
      */

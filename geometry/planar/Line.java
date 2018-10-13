@@ -29,7 +29,7 @@ import datastructures.Signum;
 
 public class Line implements Comparable<Line>, java.io.Serializable
 {
-    
+    private static final long serialVersionUID = 7524472765628777153L;
     /**
      * creates a directed Line from two Points
      */

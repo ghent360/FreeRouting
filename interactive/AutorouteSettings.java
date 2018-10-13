@@ -30,7 +30,7 @@ import autoroute.AutorouteControl.ExpansionCostFactor;
  */
 public class AutorouteSettings implements java.io.Serializable
 {
-
+    private static final long serialVersionUID = 7524472765628777202L;
     /** Creates a new instance of AutorouteSettings */
     public AutorouteSettings(int p_layer_count)
     {

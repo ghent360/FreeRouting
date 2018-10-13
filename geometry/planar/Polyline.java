@@ -38,6 +38,7 @@ import java.util.LinkedList;
 
 public class Polyline implements java.io.Serializable
 {
+    private static final long serialVersionUID = 7524472765628777221L;
     /**
      * creates a polyline of length p_polygon.corner_count + 1 from p_polygon,
      * so that the i-th corner of p_polygon will be the intersection of

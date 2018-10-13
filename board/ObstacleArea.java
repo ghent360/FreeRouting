@@ -39,6 +39,7 @@ import boardgraphics.GraphicsContext;
 
 public class ObstacleArea extends Item implements java.io.Serializable
 {
+    private static final long serialVersionUID = 7524472765628777234L;
     /**
      * Creates a new relative_area item which may belong to several nets.
      * p_name is null, if the ObstacleArea does not belong to a component.

@@ -28,6 +28,7 @@ package rules;
  */
 public class NetClasses implements java.io.Serializable
 {
+    private static final long serialVersionUID = 7524472765628777189L;
     /**
      * Returns the number of classes  in this array.
      */

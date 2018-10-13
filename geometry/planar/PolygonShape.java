@@ -34,7 +34,7 @@ import java.util.LinkedList;
  */
 public class PolygonShape extends PolylineShape
 {
-    
+    private static final long serialVersionUID = 7524472765628777222L;
     /** Creates a new instance of PolygonShape */
     public PolygonShape(Polygon p_polygon)
     {

@@ -27,7 +27,7 @@ package gui;
  */
 public class PopupMenuStitchRoute extends PopupMenuDisplay
 {
-    
+    private static final long serialVersionUID = 7524472765628777178L;
     /** Creates a new instance of PopupMenuStitchRoute */
     public PopupMenuStitchRoute(BoardFrame p_board_frame)
     {

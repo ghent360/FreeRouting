@@ -29,6 +29,7 @@ package geometry.planar;
  */
 public class Ellipse implements java.io.Serializable
 {
+    private static final long serialVersionUID = 7524472765628777229L;
     
     /** Creates a new instance of Ellipse */
     public Ellipse(FloatPoint p_center, double p_rotation, double p_radius_1, double p_radius_2)

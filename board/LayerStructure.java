@@ -27,7 +27,7 @@ package board;
  */
 public class LayerStructure implements java.io.Serializable
 {
-    
+    private static final long serialVersionUID = 7524472765628777163L;
     /** Creates a new instance of LayerStructure */
     public LayerStructure(Layer [] p_layer_arr)
     {

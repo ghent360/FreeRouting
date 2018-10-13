@@ -27,6 +27,7 @@ package rules;
 
 public class ClearanceMatrix implements java.io.Serializable
 {
+    private static final long serialVersionUID = 7524472765628777191L;
     /**
      * Creates a new instance with the 2 clearance classes "none"and "default"
      * ans initializes it with p_default_value.
@@ -395,6 +396,7 @@ public class ClearanceMatrix implements java.io.Serializable
      */
     private class Row implements board.ObjectInfoPanel.Printable, java.io.Serializable
     {
+        private static final long serialVersionUID = 7524472765628777192L;
         private Row(String p_name)
         {
             name = p_name;
@@ -451,6 +453,7 @@ public class ClearanceMatrix implements java.io.Serializable
      */
     private class MatrixEntry implements java.io.Serializable
     {
+        private static final long serialVersionUID = 7524472765628777193L;
         private MatrixEntry()
         {
             layer = new int [layer_structure.arr.length];

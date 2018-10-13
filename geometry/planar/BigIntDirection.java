@@ -32,6 +32,7 @@ import java.math.BigInteger;
 
 public class BigIntDirection extends Direction implements java.io.Serializable
 {
+    private static final long serialVersionUID = 7524472765628777231L;
     public boolean is_orthogonal()
     {
         return (x.signum() == 0 || y.signum() == 0);

@@ -34,6 +34,7 @@ import datastructures.Signum;
 
 public class RationalVector extends Vector implements java.io.Serializable
 {
+    private static final long serialVersionUID = 7524472765628777170L;
     /**
      *  creates a RetionalVector from 3 BigIntegers p_x, p_y and p_z.
      *  They represent the 2-dimensional Vector with the

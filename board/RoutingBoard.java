@@ -53,7 +53,7 @@ import autoroute.CompleteFreeSpaceExpansionRoom;
  */
 public class RoutingBoard extends BasicBoard implements java.io.Serializable
 {
-
+    private static final long serialVersionUID = 7524472765628777160L;
     /**
      * Creates a new instance of a routing Board with surrrounding box
      * p_bounding_box

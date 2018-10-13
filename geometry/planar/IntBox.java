@@ -31,6 +31,7 @@ package geometry.planar;
 
 public class IntBox extends RegularTileShape implements java.io.Serializable
 {
+    private static final long serialVersionUID = 7524472765628777157L;
     /**
      * Standard implementataion of an empty box.
      */

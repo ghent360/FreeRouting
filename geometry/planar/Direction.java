@@ -36,6 +36,7 @@ import datastructures.Signum;
 
 public abstract class  Direction implements Comparable<Direction>, java.io.Serializable
 {
+    private static final long serialVersionUID = 7524472765628777150L;
     public static final IntDirection NULL = new IntDirection(0,0);
     
     /**

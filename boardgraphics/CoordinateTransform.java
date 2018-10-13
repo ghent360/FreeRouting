@@ -32,6 +32,7 @@ import java.awt.geom.Point2D;
 
 public class CoordinateTransform implements java.io.Serializable
 {
+    private static final long serialVersionUID = 7524472765628777241L;
     public CoordinateTransform(IntBox p_design_box, Dimension p_panel_bounds )
     {
         this.screen_bounds = p_panel_bounds;

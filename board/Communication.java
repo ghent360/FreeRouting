@@ -30,7 +30,7 @@ import designformats.specctra.CoordinateTransform;
  */
 public class Communication implements java.io.Serializable
 {
-    
+    private static final long serialVersionUID = 7524472765628777165L;
     /** Creates a new instance of BoardCommunication */
     public Communication(Unit p_unit, int p_resolution,
             SpecctraParserInfo p_specctra_parser_info, CoordinateTransform p_coordinate_transform,
@@ -103,6 +103,7 @@ public class Communication implements java.io.Serializable
      */
     public static class SpecctraParserInfo implements java.io.Serializable
     {
+        private static final long serialVersionUID = 7524472765628777250L;
         public SpecctraParserInfo(String p_string_quote, String p_host_cad,
                 String p_host_version, java.util.Collection<String[] > p_constants, 
                 WriteResolution p_write_resolution,
@@ -132,6 +133,7 @@ public class Communication implements java.io.Serializable
         
         public static class WriteResolution implements java.io.Serializable
         {
+            private static final long serialVersionUID = 7524472765628777166L;
             public WriteResolution(String p_char_name, int p_positive_int)
             {
                 char_name = p_char_name;

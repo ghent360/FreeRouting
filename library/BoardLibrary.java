@@ -30,7 +30,7 @@ import java.util.Vector;
  */
 public class BoardLibrary implements java.io.Serializable
 {
-    
+    private static final long serialVersionUID = 7524472765628777195L;
     /** Creates a new instance of BoardLibrary */
     public BoardLibrary(Padstacks p_padstacks, Packages p_packages)
     {

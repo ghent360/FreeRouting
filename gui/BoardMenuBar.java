@@ -27,7 +27,7 @@ package gui;
  */
 class BoardMenuBar extends javax.swing.JMenuBar
 {
-    
+    private static final long serialVersionUID = 7524472765628777254L;
     /** Creates a new BoardMenuBar together with its menus */
     static BoardMenuBar get_instance(BoardFrame p_board_frame, boolean p_session_file_option)
     {

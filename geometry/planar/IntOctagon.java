@@ -26,6 +26,7 @@ package geometry.planar;
 
 public class IntOctagon extends RegularTileShape implements java.io.Serializable
 {
+    private static final long serialVersionUID = 7524472765628777159L;
     /**
      * Reusable instance of an empty octagon.
      */

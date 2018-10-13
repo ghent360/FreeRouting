@@ -34,6 +34,7 @@ package geometry.planar;
 public class FloatPoint implements java.io.Serializable
 {
     
+    private static final long serialVersionUID = 7524472765628777147L;
     public static final FloatPoint ZERO = new FloatPoint(0,0);
     
     /**

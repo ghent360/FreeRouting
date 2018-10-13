@@ -28,7 +28,7 @@ package gui;
  */
 public class WindowMoveParameter extends BoardSavableSubWindow
 {
-    
+    private static final long serialVersionUID = 7524472765628777207L;
     /** Creates a new instance of WindowMoveParameter */
     public WindowMoveParameter(BoardFrame p_board_frame)
     {

@@ -46,7 +46,7 @@ public class BoardMenuHelpReduced extends javax.swing.JMenu
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
-                 openBrowser("http://www.layoutEditor.net/wiki/FreeRouting");
+                 openBrowser("https://freerouting.org");
             }
         });
         this.add(browerHelp);
@@ -72,7 +72,10 @@ public class BoardMenuHelpReduced extends javax.swing.JMenu
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        } else {
+            board_frame.about_window.setVisible(true);
         }
+
     }
 
     protected final BoardFrame board_frame;

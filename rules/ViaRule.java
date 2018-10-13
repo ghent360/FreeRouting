@@ -31,7 +31,7 @@ import java.util.LinkedList;
  */
 public class ViaRule implements java.io.Serializable, board.ObjectInfoPanel.Printable
 {
-    
+    private static final long serialVersionUID = 7524472765628777186L;
     /** Empty via rule. Must nott be changed. */
     public static final ViaRule EMPTY = new ViaRule("empty");
     

@@ -36,7 +36,7 @@ import boardgraphics.GraphicsContext;
  */
 public class ComponentOutline extends Item implements java.io.Serializable
 {
-
+    private static final long serialVersionUID = 7524472765628777247L;
     /** Creates a new instance of ComponentOutline */
     public ComponentOutline(Area p_area, boolean p_is_front, Vector p_translation, double p_rotation_in_degree,
             int p_component_no, FixedState p_fixed_state, BasicBoard p_board)

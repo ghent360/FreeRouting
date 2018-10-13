@@ -29,7 +29,7 @@ import library.Padstack;
  */
 public class ViaInfo implements Comparable<ViaInfo>, board.ObjectInfoPanel.Printable, java.io.Serializable
 {
-    
+    private static final long serialVersionUID = 7524472765628777187L;
     /** Creates a new instance of ViaRule */
     public ViaInfo(String p_name, Padstack p_padstack, int p_clearance_class, boolean p_drill_to_smd_allowed,
             BoardRules p_board_rules)

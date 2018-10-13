@@ -28,7 +28,7 @@ package gui;
  */
 class BoardPanelStatus extends javax.swing.JPanel
 {
-    
+    private static final long serialVersionUID = 7524472765628777255L;
     /** Creates a new instance of BoardStatusPanel */
     BoardPanelStatus(java.util.Locale p_locale)
     {

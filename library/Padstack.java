@@ -32,7 +32,7 @@ import geometry.planar.IntOctagon;
  */
 public class Padstack implements Comparable<Padstack>, board.ObjectInfoPanel.Printable, java.io.Serializable
 {
-    
+    private static final long serialVersionUID = 7524472765628777183L;
     /**
      * Creates a new Padstack with shape p_shapes[i] on layer i (0 <= i < p_shapes.length).
      * p_is_drilllable indicates, if vias of the own net are allowed to overlap with this padstack

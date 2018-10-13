@@ -29,7 +29,7 @@ import java.util.Collection;
  */
 public class Nets implements java.io.Serializable
 {
-
+    private static final long serialVersionUID = 7524472765628777188L;
     /** Creates a new empty net list */
     public Nets()
     {
