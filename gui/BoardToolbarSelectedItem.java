@@ -30,9 +30,8 @@ class BoardToolbarSelectedItem extends javax.swing.JToolBar
     
     /**
      * Creates a new instance of BoardSelectedItemToolbar.
-     * If p_extended, some additional buttons are generated.
      */
-    BoardToolbarSelectedItem(BoardFrame p_board_frame, boolean p_extended)
+    BoardToolbarSelectedItem(BoardFrame p_board_frame)
     {
         this.board_frame = p_board_frame;
         
@@ -225,34 +224,6 @@ class BoardToolbarSelectedItem extends javax.swing.JToolBar
         
         this.add(whole_groups_button);
         
-        if (p_extended)
-        {
-            javax.swing.JButton new_net_button = new javax.swing.JButton();
-            new_net_button.setText(resources.getString("new_net"));
-            new_net_button.setToolTipText(resources.getString("new_net_tooltip"));
-            new_net_button.addActionListener(new java.awt.event.ActionListener()
-            {
-                public void actionPerformed(java.awt.event.ActionEvent evt)
-                {
-                    board_frame.board_panel.board_handling.assign_selected_to_new_net();
-                }
-            });
-            
-            this.add(new_net_button);
-            
-            javax.swing.JButton new_group_button = new javax.swing.JButton();
-            new_group_button.setText(resources.getString("new_component"));
-            new_group_button.setToolTipText(resources.getString("new_component_tooltip"));
-            new_group_button.addActionListener(new java.awt.event.ActionListener()
-            {
-                public void actionPerformed(java.awt.event.ActionEvent evt)
-                {
-                    board_frame.board_panel.board_handling.assign_selected_to_new_group();
-                }
-            });
-            
-            this.add(new_group_button);
-        }
         
         javax.swing.JLabel jLabel6 = new javax.swing.JLabel();
         jLabel6.setMaximumSize(new java.awt.Dimension(10, 10));

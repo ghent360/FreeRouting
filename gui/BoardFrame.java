@@ -37,61 +37,20 @@ import designformats.specctra.DsnFile;
 
 public class BoardFrame extends javax.swing.JFrame
 {
-    public enum Option
-    {
-        FROM_START_MENU, SINGLE_FRAME, SESSION_FILE, WEBSTART, EXTENDED_TOOL_BAR
-    }
+
     
-    /**
-     * Creates a new board frame with the input design file imbedded into a host cad software.
-     */
-    public static BoardFrame get_embedded_instance(String p_design_file_path_name,
-            BoardObservers p_observers, IdNoGenerator p_id_no_generator, java.util.Locale p_locale)
-    {
-        final gui.DesignFile design_file = gui.DesignFile.get_instance(p_design_file_path_name, false);
-        if (design_file == null)
-        {
-            WindowMessage.show("designfile not found");
-            return null;
-        }
-        gui.BoardFrame board_frame = new gui.BoardFrame(design_file, gui.BoardFrame.Option.SINGLE_FRAME,
-                TestLevel.RELEASE_VERSION, p_observers, p_id_no_generator, p_locale, false);
-        
-        
-        if (board_frame == null)
-        {
-            WindowMessage.show("board_frame is null");
-            return null;
-        }
-        java.io.InputStream input_stream = design_file.get_input_stream();
-        boolean read_ok =  board_frame.read(input_stream, true, null);
-        if (!read_ok)
-        {
-            String error_message = "Unable to read design file with pathname " + p_design_file_path_name;
-            board_frame.setVisible(true); // to be able to display the status message
-            board_frame.screen_messages.set_status_message(error_message);
-        }
-        return board_frame;
-    }
     
     /**
      * Creates new form BoardFrame.
-     * If p_option = FROM_START_MENU this frame is created from a start menu frame.
-     * If p_option = SINGLE_FRAME, this frame is created directly a single frame.
-     * If p_option = Option.IN_SAND_BOX, no security sensitive actions like for example choosing
-     *  If p_option = Option.WEBSTART, the application has  been started with Java Webstart.
-     * files are allowed, so that the frame can be used in an applet.
-     * Currently Option.EXTENDED_TOOL_BAR is used only if a new board is
-     * created by the application from scratch.
      * If p_test_level > RELEASE_VERSION, functionality not yet ready for release is included.
      * Also the warning output depends on p_test_level.
      */
-    public BoardFrame(DesignFile p_design, Option p_option, TestLevel p_test_level,
-            java.util.Locale p_locale, boolean p_confirm_cancel)
+    public BoardFrame(DesignFile p_design, boolean autoSaveSpectraSessionFileOnExit_, TestLevel p_test_level,
+            java.util.Locale p_locale)
     {
-        this(p_design, p_option, p_test_level,
+        this(p_design, autoSaveSpectraSessionFileOnExit_ , p_test_level,
                 new board.BoardObserverAdaptor(), new board.ItemIdNoGenerator(),
-                p_locale, p_confirm_cancel);
+                p_locale);
     }
     
     /**
@@ -99,34 +58,21 @@ public class BoardFrame extends javax.swing.JFrame
      * The parameters p_item_observers and p_item_id_no_generator are used for syncronizing purposes,
      * if the frame is embedded into a host system,
      */
-    BoardFrame(DesignFile p_design, Option p_option, TestLevel p_test_level, BoardObservers p_observers,
-            datastructures.IdNoGenerator p_item_id_no_generator, java.util.Locale p_locale, boolean p_confirm_cancel)
+    BoardFrame(DesignFile p_design, boolean autoSaveSpectraSessionFileOnExit_, TestLevel p_test_level, BoardObservers p_observers,
+            datastructures.IdNoGenerator p_item_id_no_generator, java.util.Locale p_locale)
     {
         this.design_file = p_design;
-        this.is_web_start = (p_option == Option.WEBSTART);
         this.test_level = p_test_level;
         
-        this.confirm_cancel = p_confirm_cancel;
         this.board_observers = p_observers;
         this.item_id_no_generator = p_item_id_no_generator;
         this.locale = p_locale;
         this.resources = java.util.ResourceBundle.getBundle("gui.resources.BoardFrame", p_locale);
         BoardMenuBar curr_menubar;
-        boolean session_file_option = (p_option == Option.SESSION_FILE);
-        boolean curr_help_system_used =  true;
-        try
-        {
-            curr_menubar = BoardMenuBar.get_instance(this, curr_help_system_used, session_file_option);
-        }
-        catch (java.lang.NoClassDefFoundError e)
-        {
-            // the system-file jh.jar may be missing
-            curr_help_system_used = false;
-            curr_menubar = BoardMenuBar.get_instance(this, false, session_file_option);
-            System.out.println("Online-Help deactivated because system file jh.jar is missing");
-        }
+        this.autoSaveSpectraSessionFileOnExit = autoSaveSpectraSessionFileOnExit_;
+        curr_menubar = BoardMenuBar.get_instance(this, autoSaveSpectraSessionFileOnExit);
+
         this.menubar = curr_menubar;
-        this.help_system_used = curr_help_system_used;
         setJMenuBar(this.menubar);
         
         this.toolbar_panel = new BoardToolbar(this);
@@ -135,7 +81,7 @@ public class BoardFrame extends javax.swing.JFrame
         this.message_panel = new BoardPanelStatus(this.locale);
         this.add(this.message_panel, java.awt.BorderLayout.SOUTH);
         
-        this.select_toolbar = new BoardToolbarSelectedItem(this, p_option == Option.EXTENDED_TOOL_BAR);
+        this.select_toolbar = new BoardToolbarSelectedItem(this);
         
         this.screen_messages =
                 new ScreenMessages(this.message_panel.status_message, this.message_panel.add_message,
@@ -146,7 +92,7 @@ public class BoardFrame extends javax.swing.JFrame
         this.scroll_pane.setVerifyInputWhenFocusTarget(false);
         this.add(scroll_pane, java.awt.BorderLayout.CENTER);
         
-        this.board_panel = new BoardPanel(screen_messages, this, this.is_web_start, p_locale);
+        this.board_panel = new BoardPanel(screen_messages, this, p_locale);
         this.scroll_pane.setViewportView(board_panel);
         
         this.setTitle(resources.getString("title"));
@@ -260,23 +206,15 @@ public class BoardFrame extends javax.swing.JFrame
             // Read the default gui settings, if gui default file exists.
             java.io.InputStream input_stream = null;
             boolean defaults_file_found;
-            if (this.is_web_start)
+            File defaults_file = new File(this.design_file.get_parent(), GUI_DEFAULTS_FILE_NAME);
+            defaults_file_found = true;
+            try
             {
-                input_stream = WebStart.get_file_input_stream(BoardFrame.GUI_DEFAULTS_FILE_NAME);
-                defaults_file_found = (input_stream != null);
+                input_stream = new java.io.FileInputStream(defaults_file);
             }
-            else
+            catch (java.io.FileNotFoundException e)
             {
-                File defaults_file = new File(this.design_file.get_parent(), GUI_DEFAULTS_FILE_NAME);
-                defaults_file_found = true;
-                try
-                {
-                    input_stream = new java.io.FileInputStream(defaults_file);
-                }
-                catch (java.io.FileNotFoundException e)
-                {
-                    defaults_file_found = false;
-                }
+                defaults_file_found = false;
             }
             if (defaults_file_found)
             {
@@ -365,9 +303,8 @@ public class BoardFrame extends javax.swing.JFrame
      */
     public void set_context_sensitive_help(java.awt.Component p_component, String p_help_id)
     {
-        if (this.help_system_used)
-        {
-            java.awt.Component curr_component;
+
+           java.awt.Component curr_component;
             if (p_component instanceof javax.swing.JFrame)
             {
                 curr_component = ((javax.swing.JFrame) p_component).getRootPane();
@@ -377,12 +314,13 @@ public class BoardFrame extends javax.swing.JFrame
                 curr_component = p_component;
             }
             String help_id = "html_files." + p_help_id;
-            javax.help.CSH.setHelpIDString(curr_component, help_id);
-            if (!this.is_web_start)
+            //System.out.println(help_id);
+            //javax.help.CSH.setHelpIDString(curr_component, help_id);
+            // if (!this.is_web_start)
             {
                 /*help_broker.enableHelpKey(curr_component, help_id, help_set);  cases error disabled in 2015.1.25*/
             }
-        }
+
     }
     
     /** Sets the toolbar to the buttons of the selected item state. */
@@ -685,16 +623,11 @@ public class BoardFrame extends javax.swing.JFrame
     private final TestLevel test_level;
     
     /** true, if the frame is created by an application running under Java Web Start */
-    final boolean is_web_start;
     
-    private final boolean help_system_used;
-    static javax.help.HelpSet help_set = null;
-    static javax.help.HelpBroker help_broker = null;
-    
-    private final boolean confirm_cancel;
     
     private final java.util.ResourceBundle resources;
     private java.util.Locale locale;
+    private boolean autoSaveSpectraSessionFileOnExit;
     
     private final BoardObservers  board_observers;
     private final datastructures.IdNoGenerator item_id_no_generator;
@@ -745,7 +678,7 @@ public class BoardFrame extends javax.swing.JFrame
         public void windowClosing(java.awt.event.WindowEvent evt)
         {
             setDefaultCloseOperation(DISPOSE_ON_CLOSE );
-            if (confirm_cancel)
+            if (!autoSaveSpectraSessionFileOnExit)
             {
                 int option = javax.swing.JOptionPane.showConfirmDialog(null, resources.getString("confirm_cancel"),
                         null, javax.swing.JOptionPane.YES_NO_OPTION);
@@ -753,6 +686,9 @@ public class BoardFrame extends javax.swing.JFrame
                 {
                     setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
                 }
+            }
+            else {
+                design_file.write_specctra_session_file(menubar.file_menu.board_frame);
             }
         }
         

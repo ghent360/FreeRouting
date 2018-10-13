@@ -29,8 +29,7 @@ class BoardMenuBar extends javax.swing.JMenuBar
 {
     
     /** Creates a new BoardMenuBar together with its menus */
-    static BoardMenuBar get_instance(BoardFrame p_board_frame,
-            boolean p_help_system_used, boolean p_session_file_option)
+    static BoardMenuBar get_instance(BoardFrame p_board_frame, boolean p_session_file_option)
     {
         BoardMenuBar menubar = new BoardMenuBar();
         menubar.file_menu = BoardMenuFile.get_instance(p_board_frame, p_session_file_option);
@@ -43,25 +42,18 @@ class BoardMenuBar extends javax.swing.JMenuBar
         menubar.add(rules_menu);
         javax.swing.JMenu info_menu = BoardMenuInfo.get_instance(p_board_frame);
         menubar.add(info_menu);
-        javax.swing.JMenu other_menu = BoardMenuOther.get_instance(p_board_frame);
-        menubar.add(other_menu);
-        if (p_help_system_used)
-        {
-            javax.swing.JMenu help_menu = new BoardMenuHelp(p_board_frame);
-            menubar.add(help_menu);
-        }
-        else
-        {
-            javax.swing.JMenu help_menu = new BoardMenuHelpReduced(p_board_frame);
-            menubar.add(help_menu);
-        }
+        javax.swing.JMenu utilities_menu = BoardMenuUtilities.get_instance(p_board_frame);
+        menubar.add(utilities_menu);
+        javax.swing.JMenu help_menu = new BoardMenuHelpReduced(p_board_frame);
+        menubar.add(help_menu);
+
         return menubar;
     }
     
-    void add_design_dependent_items()
+  /*  void add_design_dependent_items()
     {
         this.file_menu.add_design_dependent_items();
-    }
+    }*/
     
-    private BoardMenuFile file_menu;
+    public BoardMenuFile file_menu;
 }

@@ -55,19 +55,21 @@ public class WindowAbout extends BoardSavableSubWindow
         gridbag.setConstraints(version_label, gridbag_constraints);
         window_panel.add(version_label, gridbag_constraints);
         
+        javax.swing.JLabel le_label = new javax.swing.JLabel(resources.getString("LayoutEditorBuild"));
+        gridbag.setConstraints(le_label, gridbag_constraints);
+        window_panel.add(le_label, gridbag_constraints);
+
+        javax.swing.JLabel based_label = new javax.swing.JLabel(resources.getString("based"));
+        gridbag.setConstraints(based_label, gridbag_constraints);
+        window_panel.add(based_label, gridbag_constraints);
+
         javax.swing.JLabel warrenty_label = new javax.swing.JLabel(resources.getString("warranty"));
         gridbag.setConstraints(warrenty_label, gridbag_constraints);
         window_panel.add(warrenty_label, gridbag_constraints);
-        
-        javax.swing.JLabel homepage_label = new javax.swing.JLabel(resources.getString("homepage"));
-        gridbag.setConstraints(homepage_label, gridbag_constraints);
-        window_panel.add(homepage_label, gridbag_constraints);
-        
-        javax.swing.JLabel support_label = new javax.swing.JLabel(resources.getString("support"));
-        gridbag.setConstraints(support_label, gridbag_constraints);
-        window_panel.add(support_label, gridbag_constraints);
+
         
         this.add(window_panel);
         this.pack();
-    }
+   }
+
 }

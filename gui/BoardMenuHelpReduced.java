@@ -37,7 +37,20 @@ public class BoardMenuHelpReduced extends javax.swing.JMenu
         this.board_frame = p_board_frame;
         this.resources = java.util.ResourceBundle.getBundle("gui.resources.BoardMenuHelp", p_board_frame.get_locale());
         this.setText(this.resources.getString("help"));
-        
+
+        javax.swing.ImageIcon helpIcon = new javax.swing.ImageIcon(getClass().getResource("/gui/resources/helpicon.png"));
+        javax.swing.JMenuItem browerHelp = new javax.swing.JMenuItem(helpIcon);
+        browerHelp.setText(this.resources.getString("help"));
+        browerHelp.setToolTipText(this.resources.getString("help"));
+        browerHelp.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                 openBrowser("http://www.layoutEditor.net/wiki/FreeRouting");
+            }
+        });
+        this.add(browerHelp);
+
         javax.swing.JMenuItem about_window = new javax.swing.JMenuItem();
         about_window.setText(this.resources.getString("about"));
         about_window.addActionListener(new java.awt.event.ActionListener()
@@ -50,6 +63,18 @@ public class BoardMenuHelpReduced extends javax.swing.JMenu
         this.add(about_window);
     }
     
+    public void openBrowser(String url)
+    {
+        java.awt.Desktop desktop = java.awt.Desktop.isDesktopSupported() ? java.awt.Desktop.getDesktop() : null;
+        if (desktop != null && desktop.isSupported(java.awt.Desktop.Action.BROWSE)) {
+            try {
+                desktop.browse(new java.net.URL(url).toURI());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     protected final BoardFrame board_frame;
     protected final java.util.ResourceBundle resources;
 }
