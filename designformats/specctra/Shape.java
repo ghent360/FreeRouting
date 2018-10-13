@@ -524,7 +524,7 @@ public abstract class Shape
                 {
                     System.out.print("Shape.read_circle_scope: layer with name ");
                     System.out.print((String) next_token);
-                    System.out.println(" not found in layer stracture ");
+                    System.out.println(" not found in layer structure ");
                     layer_ok = false;
                 }
                 else
