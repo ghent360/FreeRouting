@@ -63,15 +63,16 @@ public class WindowClearanceViolations extends WindowObjectListWithFilter
     
     protected void select_instances()
     {
-        Object[] selected_violations = list.getSelectedValues();
-        if (selected_violations.length <= 0)
+        ///Object[] selected_violations = list.getSelectedValues();
+        java.util.List selected_violations =list.getSelectedValuesList();
+        if (selected_violations.size() <= 0)
         {
             return;
         }
         java.util.Set<board.Item> selected_items = new java.util.TreeSet<board.Item>();
-        for (int i = 0; i < selected_violations.length; ++i)
+        for (int i = 0; i < selected_violations.size(); ++i)
         {
-            ClearanceViolation curr_violation = ((ViolationInfo) selected_violations[i]).violation;
+            ClearanceViolation curr_violation = ((ViolationInfo) selected_violations.get(i)).violation;
             selected_items.add(curr_violation.first_item);
             selected_items.add(curr_violation.second_item);
             

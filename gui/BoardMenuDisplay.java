@@ -33,6 +33,33 @@ public class BoardMenuDisplay extends javax.swing.JMenu
         final BoardMenuDisplay display_menu = new BoardMenuDisplay(p_board_frame);
         display_menu.setText(display_menu.resources.getString("display"));
         
+
+        javax.swing.JMenuItem incompleteVisibility = new javax.swing.JMenuItem();
+        incompleteVisibility.setText("toggle display unroutes nets");
+        incompleteVisibility.setToolTipText("toggle display unroutes nets");
+        incompleteVisibility.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                display_menu.board_frame.board_panel.board_handling.toggle_ratsnest();
+            }
+        });
+
+        display_menu.add(incompleteVisibility);
+
+        javax.swing.JMenuItem clearanceViolations = new javax.swing.JMenuItem();
+        clearanceViolations.setText("toggle display clearance violations");
+        clearanceViolations.setToolTipText("toggle display clearance violations");
+        clearanceViolations.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                display_menu.board_frame.board_panel.board_handling.toggle_clearance_violations();
+            }
+        });
+
+        display_menu.add(clearanceViolations);
+
         javax.swing.JMenuItem itemvisibility = new javax.swing.JMenuItem();
         itemvisibility.setText(display_menu.resources.getString("object_visibility"));
         itemvisibility.setToolTipText(display_menu.resources.getString("object_visibility_tooltip"));

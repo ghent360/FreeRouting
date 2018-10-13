@@ -62,8 +62,9 @@ public class WindowPackages extends WindowObjectListWithFilter
     
     protected void select_instances()
     {
-        Object[] selected_packages = list.getSelectedValues();
-        if (selected_packages.length <= 0)
+        //Object[] selected_packages = list.getSelectedValues();
+        java.util.List selected_packages =list.getSelectedValuesList();
+        if (selected_packages.size() <= 0)
         {
             return;
         }
@@ -77,9 +78,9 @@ public class WindowPackages extends WindowObjectListWithFilter
                 board.Component curr_component = routing_board.components.get(curr_item.get_component_no());
                 Package curr_package = curr_component.get_package();
                 boolean package_matches = false;
-                for (int i = 0; i < selected_packages.length; ++i)
+                for (int i = 0; i < selected_packages.size(); ++i)
                 {
-                    if (curr_package == selected_packages[i])
+                    if (curr_package == selected_packages.get(i))
                     {
                         package_matches = true;
                         break;

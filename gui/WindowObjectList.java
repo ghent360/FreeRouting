@@ -185,15 +185,16 @@ public abstract class WindowObjectList extends BoardSavableSubWindow
     {
         public void actionPerformed(java.awt.event.ActionEvent p_evt)
         {
-            Object[] selected_objects = list.getSelectedValues();
-            if (selected_objects.length <= 0)
+            //Object[] selected_objects = list.getSelectedValues();
+            java.util.List selected_objects =list.getSelectedValuesList();
+            if (selected_objects.size() <= 0)
             {
                 return;
             }
             java.util.Collection<WindowObjectInfo.Printable> object_list = new java.util.LinkedList<WindowObjectInfo.Printable>();
-            for (int i = 0; i < selected_objects.length; ++i)
+            for (int i = 0; i < selected_objects.size(); ++i)
             {
-                object_list.add((WindowObjectInfo.Printable)(selected_objects[i]));
+                object_list.add((WindowObjectInfo.Printable)(selected_objects.get(i)));
             }
             board.CoordinateTransform coordinate_transform = board_frame.board_panel.board_handling.coordinate_transform;
             WindowObjectInfo new_window =

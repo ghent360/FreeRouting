@@ -25,7 +25,7 @@ package gui;
  *
  * @author Alfons Wirtz
  */
-class BoardToolbarSelectedItem extends javax.swing.JToolBar
+class BoardToolbarSelectedItem extends javax.swing.JPanel
 {
     
     /**
@@ -38,21 +38,38 @@ class BoardToolbarSelectedItem extends javax.swing.JToolBar
         this.resources = 
                 java.util.ResourceBundle.getBundle("gui.resources.BoardToolbarSelectedItem", p_board_frame.get_locale());
         
-        javax.swing.JButton cancel_button = new javax.swing.JButton();
-        cancel_button.setText(resources.getString("cancel"));
-        cancel_button.setToolTipText(resources.getString("cancel_tooltip"));
-        cancel_button.addActionListener(new java.awt.event.ActionListener()
+
+        this.setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.X_AXIS));
+
+        final javax.swing.JToolBar optionToolbar = new javax.swing.JToolBar();
+        optionToolbar.setLayout( new javax.swing.BoxLayout(optionToolbar, javax.swing.BoxLayout.Y_AXIS ) );
+
+        javax.swing.JLabel optionLabel=new javax.swing.JLabel();
+        optionLabel.setText("Select Options");
+        optionToolbar.add(optionLabel);
+        optionLabel.setAlignmentX( java.awt.Component.LEFT_ALIGNMENT );
+
+        javax.swing.JPanel optionPanel= new javax.swing.JPanel();
+        optionPanel.setLayout(new javax.swing.BoxLayout(optionPanel, javax.swing.BoxLayout.X_AXIS ));
+        optionToolbar.add(optionPanel);
+        optionPanel.setAlignmentX( java.awt.Component.LEFT_ALIGNMENT );
+
+        javax.swing.JButton cancelButton = new javax.swing.JButton();
+        cancelButton.setText(resources.getString("cancel"));
+        cancelButton.setToolTipText(resources.getString("cancel_tooltip"));
+        cancelButton.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
                 board_frame.board_panel.board_handling.cancel_state();
             }
         });
-        
-        this.add(cancel_button);
-        
-        javax.swing.JButton info_button = new javax.swing.JButton();
-        info_button.setText(resources.getString("info"));
+        cancelButton.setAlignmentX( java.awt.Component.LEFT_ALIGNMENT );
+        optionPanel.add(cancelButton);
+
+        javax.swing.ImageIcon infoIcon = new javax.swing.ImageIcon(getClass().getResource("/gui/resources/componentinfoicon.png"));
+        javax.swing.JButton info_button = new javax.swing.JButton(infoIcon);
+        //info_button.setText(resources.getString("info"));
         info_button.setToolTipText(resources.getString("info_tooltip"));
         info_button.addActionListener(new java.awt.event.ActionListener()
         {
@@ -61,11 +78,27 @@ class BoardToolbarSelectedItem extends javax.swing.JToolBar
                 board_frame.board_panel.board_handling.display_selected_item_info();
             }
         });
-        
-        this.add(info_button);
-        
-        javax.swing.JButton delete_button = new javax.swing.JButton();
-        delete_button.setText(resources.getString("delete"));
+
+        optionPanel.add(info_button);
+
+        this.add(optionToolbar);
+
+        final javax.swing.JToolBar editToolbar = new javax.swing.JToolBar();
+        editToolbar.setLayout( new javax.swing.BoxLayout(editToolbar, javax.swing.BoxLayout.Y_AXIS ) );
+
+        javax.swing.JLabel editLabel=new javax.swing.JLabel();
+        editLabel.setText("Edit Selection");
+        editToolbar.add(editLabel);
+        editLabel.setAlignmentX( java.awt.Component.LEFT_ALIGNMENT );
+
+        javax.swing.JPanel editPanel= new javax.swing.JPanel();
+        editPanel.setLayout(new javax.swing.BoxLayout(editPanel, javax.swing.BoxLayout.X_AXIS ));
+        editToolbar.add(editPanel);
+        editPanel.setAlignmentX( java.awt.Component.LEFT_ALIGNMENT );
+
+        javax.swing.ImageIcon deleteIcon = new javax.swing.ImageIcon(getClass().getResource("/gui/resources/deleteicon.png"));
+        javax.swing.JButton delete_button = new javax.swing.JButton(deleteIcon);
+        //delete_button.setText(resources.getString("delete"));
         delete_button.setToolTipText(resources.getString("delete_tooltip"));
         delete_button.addActionListener(new java.awt.event.ActionListener()
         {
@@ -74,8 +107,128 @@ class BoardToolbarSelectedItem extends javax.swing.JToolBar
                 board_frame.board_panel.board_handling.delete_selected_items();
             }
         });
+
+        editPanel.add(delete_button);
+
+        javax.swing.ImageIcon autorouteIcon = new javax.swing.ImageIcon(getClass().getResource("/gui/resources/netautorouteicon.png"));
+        javax.swing.JButton autoroute_button = new javax.swing.JButton(autorouteIcon);
+        //autoroute_button.setText(resources.getString("autoroute"));
+        autoroute_button.setToolTipText(resources.getString("autoroute_tooltip"));
+        autoroute_button.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                board_frame.board_panel.board_handling.autoroute_selected_items();
+            }
+        });
+        editPanel.add(autoroute_button);
+
+        javax.swing.ImageIcon lockIcon = new javax.swing.ImageIcon(getClass().getResource("/gui/resources/lock.png"));
+        javax.swing.JButton fix_button = new javax.swing.JButton(lockIcon);
+        //fix_button.setText(resources.getString("fix"));
+        fix_button.setToolTipText(resources.getString("fix_tooltip"));
+        fix_button.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                board_frame.board_panel.board_handling.fix_selected_items();
+            }
+        });
+
+        editPanel.add(fix_button);
+
+        javax.swing.ImageIcon unlockIcon = new javax.swing.ImageIcon(getClass().getResource("/gui/resources/unlock.png"));
+        javax.swing.JButton unfix_button = new javax.swing.JButton(unlockIcon);
+        //unfix_button.setText(resources.getString("unfix"));
+        unfix_button.setToolTipText(resources.getString("unfix_tooltip"));
+        unfix_button.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                board_frame.board_panel.board_handling.unfix_selected_items();
+            }
+        });
+
+        editPanel.add(unfix_button);
+
+        this.add(editToolbar);
+
+
+        final javax.swing.JToolBar extendToolbar = new javax.swing.JToolBar();
+        extendToolbar.setLayout( new javax.swing.BoxLayout(extendToolbar, javax.swing.BoxLayout.Y_AXIS ) );
+
+        javax.swing.JLabel extendLabel=new javax.swing.JLabel();
+        extendLabel.setText("Extend Selection");
+        extendToolbar.add(extendLabel);
+        extendLabel.setAlignmentX( java.awt.Component.LEFT_ALIGNMENT );
+
+        javax.swing.JPanel extendPanel= new javax.swing.JPanel();
+        extendPanel.setLayout(new javax.swing.BoxLayout(extendPanel, javax.swing.BoxLayout.X_AXIS ));
+        extendToolbar.add(extendPanel);
+        extendPanel.setAlignmentX( java.awt.Component.LEFT_ALIGNMENT );
+
+        javax.swing.ImageIcon dragIcon = new javax.swing.ImageIcon(getClass().getResource("/gui/resources/nodeicon.png"));
+        javax.swing.JButton extendNetButton = new javax.swing.JButton(dragIcon);
+        //extendNetButton.setText(resources.getString("nets")");
+        extendNetButton.setToolTipText(resources.getString("nets_tooltip"));
+        extendNetButton.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                board_frame.board_panel.board_handling.extend_selection_to_whole_nets();
+            }
+        });
+        extendNetButton.setAlignmentX( java.awt.Component.LEFT_ALIGNMENT );
+        extendPanel.add(extendNetButton);
+
+        javax.swing.ImageIcon extendSetIcon = new javax.swing.ImageIcon(getClass().getResource("/gui/resources/netlisticon.png"));
+        javax.swing.JButton extendSetButton = new javax.swing.JButton(extendSetIcon);
+        //extendSetButton.setText(resources.getString("conn_sets"));
+        extendSetButton.setToolTipText(resources.getString("conn_sets_tooltip"));
+        extendSetButton.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                board_frame.board_panel.board_handling.extend_selection_to_whole_connected_sets();
+            }
+        });
+        extendSetButton.setAlignmentX( java.awt.Component.LEFT_ALIGNMENT );
+        extendPanel.add(extendSetButton);
+
+        javax.swing.ImageIcon connIcon = new javax.swing.ImageIcon(getClass().getResource("/gui/resources/snodeicon.png"));
+        javax.swing.JButton extendConnectionButton = new javax.swing.JButton(connIcon);
+        //extendConnectionButton.setText(resources.getString("connections"));
+        extendConnectionButton.setToolTipText(resources.getString("connections_tooltip"));
+        extendConnectionButton.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                board_frame.board_panel.board_handling.extend_selection_to_whole_connections();
+            }
+        });
+        extendConnectionButton.setAlignmentX( java.awt.Component.LEFT_ALIGNMENT );
+        extendPanel.add(extendConnectionButton);
+
+        javax.swing.ImageIcon compIcon = new javax.swing.ImageIcon(getClass().getResource("/gui/resources/componenticon.png"));
+        javax.swing.JButton extendCompButton = new javax.swing.JButton(compIcon);
+        //extendCompButton.setText(resources.getString("components"));
+        extendCompButton.setToolTipText(resources.getString("components_tooltip"));
+        extendCompButton.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                board_frame.board_panel.board_handling.extend_selection_to_whole_components();
+            }
+        });
+        extendCompButton.setAlignmentX( java.awt.Component.LEFT_ALIGNMENT );
+        extendPanel.add(extendCompButton);
+
+        this.add(extendToolbar);
+
+
+
         
-        this.add(delete_button);
+
         
         
         javax.swing.JButton cutout_button = new javax.swing.JButton();
@@ -89,45 +242,11 @@ class BoardToolbarSelectedItem extends javax.swing.JToolBar
             }
         });
         
-        this.add(cutout_button);
+        editPanel.add(cutout_button);
         
-        javax.swing.JButton fix_button = new javax.swing.JButton();
-        fix_button.setText(resources.getString("fix"));
-        fix_button.setToolTipText(resources.getString("fix_tooltip"));
-        fix_button.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                board_frame.board_panel.board_handling.fix_selected_items();
-            }
-        });
-        
-        this.add(fix_button);
-        
-        javax.swing.JButton unfix_button = new javax.swing.JButton();
-        unfix_button.setText(resources.getString("unfix"));
-        unfix_button.setToolTipText(resources.getString("unfix_tooltip"));
-        unfix_button.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                board_frame.board_panel.board_handling.unfix_selected_items();
-            }
-        });
-        
-        this.add(unfix_button);
+
              
-        javax.swing.JButton autoroute_button = new javax.swing.JButton();
-        autoroute_button.setText(resources.getString("autoroute"));
-        autoroute_button.setToolTipText(resources.getString("autoroute_tooltip"));
-        autoroute_button.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                board_frame.board_panel.board_handling.autoroute_selected_items();
-            }
-        });
-        this.add(autoroute_button);
+
         
         javax.swing.JButton tidy_button = new javax.swing.JButton();
         tidy_button.setText(resources.getString("pull_tight"));
@@ -140,7 +259,7 @@ class BoardToolbarSelectedItem extends javax.swing.JToolBar
             }
         });
         
-        this.add(tidy_button);
+        editPanel.add(tidy_button);
                        
         javax.swing.JButton clearance_class_button = new javax.swing.JButton();
         clearance_class_button.setText(resources.getString("spacing"));
@@ -163,129 +282,17 @@ class BoardToolbarSelectedItem extends javax.swing.JToolBar
                 board_frame.board_panel.board_handling.fanout_selected_items();
             }
         });
-        this.add(fanout_button);
+        editPanel.add(fanout_button);
         
-        this.add(clearance_class_button);
+        editPanel.add(clearance_class_button);
         
-        javax.swing.JLabel jLabel5 = new javax.swing.JLabel();
-        jLabel5.setMaximumSize(new java.awt.Dimension(10, 10));
-        jLabel5.setPreferredSize(new java.awt.Dimension(10, 10));
-        this.add(jLabel5);
+
+
+
         
-        javax.swing.JButton whole_nets_button = new javax.swing.JButton();
-        whole_nets_button.setText(resources.getString("nets"));
-        whole_nets_button.setToolTipText(resources.getString("nets_tooltip"));
-        whole_nets_button.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                board_frame.board_panel.board_handling.extend_selection_to_whole_nets();
-            }
-        });
-        
-        this.add(whole_nets_button);
-        
-        javax.swing.JButton whole_connected_sets_button = new javax.swing.JButton();
-        whole_connected_sets_button.setText(resources.getString("conn_sets"));
-        whole_connected_sets_button.setToolTipText(resources.getString("conn_sets_tooltip"));
-        whole_connected_sets_button.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                board_frame.board_panel.board_handling.extend_selection_to_whole_connected_sets();
-            }
-        });
-        
-        this.add(whole_connected_sets_button);
-        
-        javax.swing.JButton whole_connections_button = new javax.swing.JButton();
-        whole_connections_button.setText(resources.getString("connections"));
-        whole_connections_button.setToolTipText(resources.getString("connections_tooltip"));
-        whole_connections_button.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                board_frame.board_panel.board_handling.extend_selection_to_whole_connections();
-            }
-        });
-        
-        this.add(whole_connections_button);
-        
-        javax.swing.JButton whole_groups_button = new javax.swing.JButton();
-        whole_groups_button.setText(resources.getString("components"));
-        whole_groups_button.setToolTipText(resources.getString("components_tooltip"));
-        whole_groups_button.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                board_frame.board_panel.board_handling.extend_selection_to_whole_components();
-            }
-        });
-        
-        this.add(whole_groups_button);
-        
-        
-        javax.swing.JLabel jLabel6 = new javax.swing.JLabel();
-        jLabel6.setMaximumSize(new java.awt.Dimension(10, 10));
-        jLabel6.setPreferredSize(new java.awt.Dimension(10, 10));
-        this.add(jLabel6);
-        
-        javax.swing.JButton violation_button = new javax.swing.JButton();
-        violation_button.setText(resources.getString("violations"));
-        violation_button.setToolTipText(resources.getString("violations_tooltip"));
-        violation_button.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                board_frame.board_panel.board_handling.toggle_selected_item_violations();
-            }
-        });
-        
-        this.add(violation_button);
-        
-        javax.swing.JLabel jLabel7 = new javax.swing.JLabel();
-        jLabel7.setMaximumSize(new java.awt.Dimension(10, 10));
-        jLabel7.setPreferredSize(new java.awt.Dimension(10, 10));
-        this.add(jLabel7);
-        
-        
-        javax.swing.JButton display_selection_button = new javax.swing.JButton();
-        display_selection_button.setText(resources.getString("zoom_selection"));
-        display_selection_button.setToolTipText(resources.getString("zoom_selection_tooltip"));
-        display_selection_button.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                board_frame.board_panel.board_handling.zoom_selection();
-                
-            }
-        });
-        this.add(display_selection_button);
-        
-        javax.swing.JButton display_all_button = new javax.swing.JButton();
-        display_all_button.setText(resources.getString("zoom_all"));
-        display_all_button.setToolTipText(resources.getString("zoom_all_tooltip"));
-        display_all_button.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                board_frame.zoom_all();
-            }
-        });
-        this.add(display_all_button);
-        
-        javax.swing.JButton display_region_button = new javax.swing.JButton();
-        display_region_button.setText(resources.getString("zoom_region"));
-        display_region_button.setToolTipText(resources.getString("zoom_region_tooltip"));
-        display_region_button.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                board_frame.board_panel.board_handling.zoom_region();
-            }
-        });
-        
-        this.add(display_region_button);
+
+
+
     }
     
     private void assign_clearance_class()

@@ -61,8 +61,9 @@ public class WindowComponents extends WindowObjectListWithFilter
     
     protected void select_instances()
     {
-        Object[] selected_components = list.getSelectedValues();
-        if (selected_components.length <= 0)
+        //Object[] selected_components = list.getSelectedValues();
+        java.util.List selected_components =list.getSelectedValuesList();
+        if (selected_components.size() <= 0)
         {
             return;
         }
@@ -75,9 +76,9 @@ public class WindowComponents extends WindowObjectListWithFilter
             {
                 board.Component curr_component = routing_board.components.get(curr_item.get_component_no());
                 boolean component_matches = false;
-                for (int i = 0; i < selected_components.length; ++i)
+                for (int i = 0; i < selected_components.size(); ++i)
                 {
-                    if (curr_component == selected_components[i])
+                    if (curr_component == selected_components.get(i))
                     {
                         component_matches = true;
                         break;

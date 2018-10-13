@@ -36,18 +36,259 @@ class BoardToolbar extends javax.swing.JPanel
         java.util.ResourceBundle resources = 
                 java.util.ResourceBundle.getBundle("gui.resources.BoardToolbar", p_board_frame.get_locale());
         
-        this.setLayout(new java.awt.BorderLayout());
+        this.setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.X_AXIS));
         
+        // create routing toolbar
+
+        final javax.swing.JToolBar routingToolbar = new javax.swing.JToolBar();
+        routingToolbar.setLayout( new javax.swing.BoxLayout(routingToolbar, javax.swing.BoxLayout.Y_AXIS ) );
+
+        javax.swing.JLabel routingLabel=new javax.swing.JLabel();
+        routingLabel.setText("Routing");
+        routingToolbar.add(routingLabel);
+        routingLabel.setAlignmentX( java.awt.Component.LEFT_ALIGNMENT );
+
+        javax.swing.JPanel routingPanel= new javax.swing.JPanel();
+        routingPanel.setLayout(new javax.swing.BoxLayout(routingPanel, javax.swing.BoxLayout.X_AXIS ));
+        routingToolbar.add(routingPanel);
+        routingPanel.setAlignmentX( java.awt.Component.LEFT_ALIGNMENT );
+
+
+        javax.swing.ImageIcon autoroutingIcon = new javax.swing.ImageIcon(getClass().getResource("/gui/resources/netautorouteicon.png"));
+        autoroutingButton = new javax.swing.JToggleButton(autoroutingIcon);
+        autoroutingButton.setToolTipText("starts autorouting of the complete PCB");
+        autoroutingButton.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+
+                board_frame.board_panel.board_handling.start_batch_autorouter();
+            }
+        });
+        routingPanel.add(autoroutingButton);
+
+        javax.swing.ImageIcon routingIcon = new javax.swing.ImageIcon(getClass().getResource("/gui/resources/netrouteicon.png"));
+        routingButton = new javax.swing.JToggleButton(routingIcon);
+        routingButton.setToolTipText("activates the manual routing mode");
+        routingButton.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                board_frame.board_panel.board_handling.set_route_menu_state();
+            }
+        });
+        routingPanel.add(routingButton);
+
+
+        javax.swing.ImageIcon selectIcon = new javax.swing.ImageIcon(getClass().getResource("/gui/resources/selectediticon.png"));
+        selectButton = new javax.swing.JToggleButton(selectIcon);
+        selectButton.setToolTipText("activates the select/edit mode");
+        selectButton.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                board_frame.board_panel.board_handling.set_select_menu_state();
+            }
+        });
+        routingPanel.add(selectButton);
+
+
+        javax.swing.ImageIcon dragIcon = new javax.swing.ImageIcon(getClass().getResource("/gui/resources/dragicon.png"));
+        dragButton = new javax.swing.JToggleButton(dragIcon);
+        dragButton.setToolTipText("activates the drag mode to move components and routes");
+        dragButton.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+               board_frame.board_panel.board_handling.set_drag_menu_state();
+            }
+        });
+        routingPanel.add(dragButton);
+
+        routingToolbar.add(routingPanel);
+
+
+        this.add(routingToolbar);
+
+        // create zoom toolbar
+        final javax.swing.JToolBar zoomToolbar = new javax.swing.JToolBar();
+        zoomToolbar.setLayout( new javax.swing.BoxLayout(zoomToolbar, javax.swing.BoxLayout.Y_AXIS ) );
+
+        javax.swing.JLabel zoomLabel=new javax.swing.JLabel();
+        zoomLabel.setText("Zoom");
+        zoomToolbar.add(zoomLabel);
+        zoomLabel.setAlignmentX( java.awt.Component.LEFT_ALIGNMENT );
+
+        javax.swing.JPanel zoomPanel= new javax.swing.JPanel();
+        zoomPanel.setLayout(new javax.swing.BoxLayout(zoomPanel, javax.swing.BoxLayout.X_AXIS ));
+        zoomToolbar.add(zoomPanel);
+        zoomPanel.setAlignmentX( java.awt.Component.LEFT_ALIGNMENT );
+
+
+        javax.swing.ImageIcon zoomFullIcon = new javax.swing.ImageIcon(getClass().getResource("/gui/resources/zoomfullicon.png"));
+        javax.swing.JButton zoomAllButton = new javax.swing.JButton(zoomFullIcon);
+        zoomAllButton.setToolTipText("zoom fit all");
+        zoomAllButton.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                board_frame.zoom_all();
+            }
+        });
+        zoomPanel.add(zoomAllButton);
+
+        javax.swing.ImageIcon zoomIcon = new javax.swing.ImageIcon(getClass().getResource("/gui/resources/zoomicon.png"));
+        javax.swing.JButton zoomMouseButton = new javax.swing.JButton(zoomIcon);
+        zoomMouseButton.setToolTipText("zoom region by mouse");
+        zoomMouseButton.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                board_frame.board_panel.board_handling.zoom_region();
+            }
+        });
+        zoomPanel.add(zoomMouseButton);
+
+
+        zoomToolbar.add(zoomPanel);
+        this.add(zoomToolbar);
+
+        // create undo toolbar
+        final javax.swing.JToolBar undoToolbar = new javax.swing.JToolBar();
+        undoToolbar.setLayout( new javax.swing.BoxLayout(undoToolbar, javax.swing.BoxLayout.Y_AXIS ) );
+
+        javax.swing.JLabel undoLabel=new javax.swing.JLabel();
+        undoLabel.setText("Undo");
+        undoToolbar.add(undoLabel);
+        undoLabel.setAlignmentX( java.awt.Component.LEFT_ALIGNMENT );
+
+        javax.swing.JPanel undoPanel= new javax.swing.JPanel();
+        undoPanel.setLayout(new javax.swing.BoxLayout(undoPanel, javax.swing.BoxLayout.X_AXIS ));
+        undoToolbar.add(undoPanel);
+        undoPanel.setAlignmentX( java.awt.Component.LEFT_ALIGNMENT );
+
+
+        javax.swing.ImageIcon undoIcon = new javax.swing.ImageIcon(getClass().getResource("/gui/resources/undoicon.png"));
+        final javax.swing.JButton undoButton = new javax.swing.JButton(undoIcon);
+        undoButton.setToolTipText("undo last step");
+        undoButton.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                board_frame.board_panel.board_handling.cancel_state();
+                board_frame.board_panel.board_handling.undo();
+                board_frame.refresh_windows();
+            }
+        });
+        undoPanel.add(undoButton);
+
+        javax.swing.ImageIcon redoIcon = new javax.swing.ImageIcon(getClass().getResource("/gui/resources/redoicon.png"));
+        final javax.swing.JButton redoButton = new javax.swing.JButton(redoIcon);
+        redoButton.setToolTipText("redo last undo step");
+        redoButton.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                board_frame.board_panel.board_handling.redo();
+            }
+        });
+
+        undoPanel.add(redoButton);
+
+
+        undoToolbar.add(undoPanel);
+        this.add(undoToolbar);
+
+        // units toolbar
+
+        final javax.swing.JToolBar unitsToolbar = new javax.swing.JToolBar();
+        unitsToolbar.setLayout( new javax.swing.BoxLayout(unitsToolbar, javax.swing.BoxLayout.Y_AXIS ) );
+
+        javax.swing.JLabel unitsLabel=new javax.swing.JLabel();
+        unitsLabel.setText("Units");
+        unitsToolbar.add(unitsLabel);
+        unitsLabel.setAlignmentX( java.awt.Component.LEFT_ALIGNMENT );
+
+        javax.swing.JPanel unitsPanel= new javax.swing.JPanel();
+        unitsPanel.setLayout(new javax.swing.BoxLayout(unitsPanel, javax.swing.BoxLayout.X_AXIS ));
+        unitsToolbar.add(unitsPanel);
+        unitsPanel.setAlignmentX( java.awt.Component.LEFT_ALIGNMENT );
+
+        java.text.NumberFormat number_format = java.text.NumberFormat.getInstance(p_board_frame.get_locale());
+        number_format.setMaximumFractionDigits(7);
+        this.unit_factor_field = new javax.swing.JFormattedTextField(number_format);
+        this.unit_combo_box = new javax.swing.JComboBox();
+        final javax.swing.JLabel jLabel4 = new javax.swing.JLabel();
+
+        //right_toolbar.setAutoscrolls(true);
+
+        unit_factor_field.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        unit_factor_field.setValue(1);
+        unit_factor_field.setMaximumSize(new java.awt.Dimension(60, 25));
+        //unit_factor_field.setMinimumSize(new java.awt.Dimension(40, 18));
+        unit_factor_field.setPreferredSize(new java.awt.Dimension(50, 18));
+        unit_factor_field.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
+                if (evt.getKeyChar() == '\n')
+                {
+                    Object input = unit_factor_field.getValue();
+                    if (input instanceof Number)
+                    {
+                        double input_value = ((Number)input).doubleValue();
+                        if (input_value > 0)
+                        {
+                            board_frame.board_panel.board_handling.change_user_unit_factor(input_value);
+                        }
+                    }
+                    double unit_factor = board_frame.board_panel.board_handling.coordinate_transform.user_unit_factor;
+                    unit_factor_field.setValue(unit_factor);
+
+                    board_frame.refresh_windows();
+                }
+            }
+        });
+
+        unitsPanel.add(unit_factor_field);
+
+        unit_combo_box.setModel(new javax.swing.DefaultComboBoxModel(board.Unit.values()));
+        unit_combo_box.setFocusTraversalPolicyProvider(true);
+        unit_combo_box.setInheritsPopupMenu(true);
+        unit_combo_box.setMaximumSize(new java.awt.Dimension(60, 18));
+        unit_combo_box.setMinimumSize(new java.awt.Dimension(60, 18));
+        unit_combo_box.setOpaque(false);
+        unit_combo_box.setPreferredSize(new java.awt.Dimension(60, 18));
+        unit_combo_box.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                board.Unit new_unit = (board.Unit) unit_combo_box.getSelectedItem();
+                board_frame.board_panel.board_handling.change_user_unit(new_unit);
+                board_frame.refresh_windows();
+            }
+        });
+
+        unitsPanel.add(unit_combo_box);
+
+        jLabel4.setMaximumSize(new java.awt.Dimension(30, 14));
+        jLabel4.setPreferredSize(new java.awt.Dimension(30, 14));
+        unitsPanel.add(jLabel4);
+
+
+        this.add(unitsToolbar);
+
         // create the left toolbar
-        
+        /*
         final javax.swing.JToolBar left_toolbar = new javax.swing.JToolBar();
+
         final javax.swing.ButtonGroup toolbar_button_group = new javax.swing.ButtonGroup();
         this.select_button = new javax.swing.JToggleButton();
         this.route_button = new javax.swing.JToggleButton();
         this.drag_button = new javax.swing.JToggleButton();
         final javax.swing.JLabel jLabel1 = new javax.swing.JLabel();
-        
-        left_toolbar.setMaximumSize(new java.awt.Dimension(1200, 23));
+
+        left_toolbar.setMaximumSize(new java.awt.Dimension(1200, 90));
         toolbar_button_group.add(select_button);
         select_button.setSelected(true);
         select_button.setText(resources.getString("select_button"));
@@ -59,9 +300,9 @@ class BoardToolbar extends javax.swing.JPanel
                 board_frame.board_panel.board_handling.set_select_menu_state();
             }
         });
-        
+
         left_toolbar.add(select_button);
-        
+
         toolbar_button_group.add(route_button);
         route_button.setText(resources.getString("route_button"));
         route_button.setToolTipText(resources.getString("route_button_tooltip"));
@@ -72,9 +313,9 @@ class BoardToolbar extends javax.swing.JPanel
                 board_frame.board_panel.board_handling.set_route_menu_state();
             }
         });
-        
+
         left_toolbar.add(route_button);
-        
+
         toolbar_button_group.add(drag_button);
         drag_button.setText(resources.getString("drag_button"));
         drag_button.setToolTipText(resources.getString("drag_button_tooltip"));
@@ -85,18 +326,20 @@ class BoardToolbar extends javax.swing.JPanel
                 board_frame.board_panel.board_handling.set_drag_menu_state();
             }
         });
-        
+
         left_toolbar.add(drag_button);
-        
+
         jLabel1.setMaximumSize(new java.awt.Dimension(30, 10));
         jLabel1.setMinimumSize(new java.awt.Dimension(3, 10));
         jLabel1.setPreferredSize(new java.awt.Dimension(30, 10));
         left_toolbar.add(jLabel1);
-        
+
         this.add(left_toolbar, java.awt.BorderLayout.WEST);
-        
+        */
+
+
         // create the middle toolbar
-        
+        /*
         final javax.swing.JToolBar middle_toolbar = new javax.swing.JToolBar();
         
         final javax.swing.JButton autoroute_button = new javax.swing.JButton();
@@ -210,9 +453,9 @@ class BoardToolbar extends javax.swing.JPanel
         middle_toolbar.add(display_region_button);
         
         this.add(middle_toolbar, java.awt.BorderLayout.CENTER);
-        
+        */
         // create the right toolbar
-        
+        /*
         final javax.swing.JToolBar right_toolbar = new javax.swing.JToolBar();
         final javax.swing.JLabel unit_label = new javax.swing.JLabel();
         java.text.NumberFormat number_format = java.text.NumberFormat.getInstance(p_board_frame.get_locale());
@@ -280,33 +523,52 @@ class BoardToolbar extends javax.swing.JPanel
         jLabel4.setPreferredSize(new java.awt.Dimension(30, 14));
         right_toolbar.add(jLabel4);
         
-        this.add(right_toolbar, java.awt.BorderLayout.EAST);
+        this.add(right_toolbar, java.awt.BorderLayout.EAST);*/
     }
     
     /**
      * Sets the selected button in the menu button button group
      */
-    void hilight_selected_button()
+    void highlight_selected_button()
     {
         interactive.InteractiveState interactive_state = this.board_frame.board_panel.board_handling.get_interactive_state();
         if (interactive_state instanceof interactive.RouteMenuState)
         {
-            this.route_button.setSelected(true);
+            this.routingButton.setSelected(true);
+            this.dragButton.setSelected(false);
+            this.selectButton.setSelected(false);
+            this.autoroutingButton.setSelected(false);
         }
         else if (interactive_state instanceof interactive.DragMenuState)
         {
-            this.drag_button.setSelected(true);
+            this.dragButton.setSelected(true);
+            this.selectButton.setSelected(false);
+            this.routingButton.setSelected(false);
+            this.autoroutingButton.setSelected(false);
         }
         else if (interactive_state instanceof interactive.SelectMenuState)
         {
-            this.select_button.setSelected(true);
+            this.selectButton.setSelected(true);
+            this.dragButton.setSelected(false);
+            this.routingButton.setSelected(false);
+            this.autoroutingButton.setSelected(false);
         }
     }
+
+    void highLightAutoroute()
+    {
+        this.selectButton.setSelected(false);
+        this.dragButton.setSelected(false);
+        this.routingButton.setSelected(false);
+        this.autoroutingButton.setSelected(true);
+    }
+
     
     private final BoardFrame board_frame;
-    private final javax.swing.JToggleButton select_button;
-    private final javax.swing.JToggleButton route_button;
-    private final javax.swing.JToggleButton drag_button;
+    private final javax.swing.JToggleButton autoroutingButton;
+    private final javax.swing.JToggleButton selectButton;
+    private final javax.swing.JToggleButton routingButton;
+    private final javax.swing.JToggleButton dragButton;
     final javax.swing.JFormattedTextField unit_factor_field;
     final javax.swing.JComboBox unit_combo_box;
 }

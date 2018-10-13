@@ -40,6 +40,16 @@ public class BoardMenuUtilities extends javax.swing.JMenu
 
         this.setText(this.resources.getString("Utilities"));
 
+        javax.swing.JMenu displayMenu = BoardMenuDisplay.get_instance(p_board_frame);
+        this.add(displayMenu);
+
+        javax.swing.JMenu parameter_menu = BoardMenuParameter.get_instance(p_board_frame);
+        this.add(parameter_menu);
+        javax.swing.JMenu rules_menu = BoardMenuRules.get_instance(p_board_frame);
+        this.add(rules_menu);
+        javax.swing.JMenu info_menu = BoardMenuInfo.get_instance(p_board_frame);
+        this.add(info_menu);
+
         javax.swing.JMenu logfileMenu = new javax.swing.JMenu(this.resources.getString("logfile"));
         //logsubmenu.setMnemonic(KeyEvent.VK_S);
             javax.swing.JMenuItem write_logfile_item = new javax.swing.JMenuItem();

@@ -197,7 +197,7 @@ public class BoardFrame extends javax.swing.JFrame
         board_panel.create_popup_menus();
         board_panel.init_colors();
         board_panel.board_handling.create_ratsnest();
-        this.hilight_selected_button();
+        this.highlight_selected_button();
         this.toolbar_panel.unit_factor_field.setValue(board_panel.board_handling.coordinate_transform.user_unit_factor);
         this.toolbar_panel.unit_combo_box.setSelectedItem(board_panel.board_handling.coordinate_transform.user_unit);
         this.setVisible(true);
@@ -522,11 +522,17 @@ public class BoardFrame extends javax.swing.JFrame
     /**
      * Sets the selected button in the menu button button group
      */
-    public void hilight_selected_button()
+    public void highlight_selected_button()
     {
-        this.toolbar_panel.hilight_selected_button();
+        this.toolbar_panel.highlight_selected_button();
     }
     
+
+    public void highLightAutoroute(){
+        this.toolbar_panel.highLightAutoroute();
+    }
+
+
     /**
      * Restore the selected snapshot in the snapshot window.
      */
@@ -613,7 +619,7 @@ public class BoardFrame extends javax.swing.JFrame
     private final BoardToolbar toolbar_panel;
     
     /** The toolbar used in the selected item state. */
-    private final javax.swing.JToolBar select_toolbar;
+    private final javax.swing.JPanel select_toolbar;
     
     /** The panel with the message line */
     private final BoardPanelStatus message_panel;

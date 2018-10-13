@@ -68,15 +68,16 @@ public class WindowLengthViolations  extends WindowObjectListWithFilter
     
     protected void select_instances()
     {
-        Object[] selected_violations = list.getSelectedValues();
-        if (selected_violations.length <= 0)
+        //Object[] selected_violations = list.getSelectedValues();
+        java.util.List selected_violations =list.getSelectedValuesList();
+        if (selected_violations.size() <= 0)
         {
             return;
         }
         java.util.Set<board.Item> selected_items = new java.util.TreeSet<board.Item>();
-        for (int i = 0; i < selected_violations.length; ++i)
+        for (int i = 0; i < selected_violations.size(); ++i)
         {
-            LengthViolation curr_violation = ((LengthViolation) selected_violations[i]);
+            LengthViolation curr_violation = ((LengthViolation) selected_violations.get(i));
             selected_items.addAll(curr_violation.net.get_items());            
         }
         interactive.BoardHandling board_handling = board_frame.board_panel.board_handling;

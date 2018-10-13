@@ -948,7 +948,7 @@ public class BoardHandling
         if (return_state != null && return_state != interactive_state)
         {
             set_interactive_state(return_state);
-            panel.board_frame.hilight_selected_button();
+            panel.board_frame.highlight_selected_button();
             repaint();
         }
 
@@ -1018,6 +1018,7 @@ public class BoardHandling
     public void set_select_menu_state()
     {
         this.interactive_state = SelectMenuState.get_instance(this, logfile);
+        this.panel.board_frame.highlight_selected_button();
         screen_messages.set_status_message(resources.getString("select_menu"));
     }
 
@@ -1027,6 +1028,7 @@ public class BoardHandling
     public void set_route_menu_state()
     {
         this.interactive_state = RouteMenuState.get_instance(this, logfile);
+        this.panel.board_frame.highlight_selected_button();
         screen_messages.set_status_message(resources.getString("route_menu"));
     }
 
@@ -1036,6 +1038,7 @@ public class BoardHandling
     public void set_drag_menu_state()
     {
         this.interactive_state = DragMenuState.get_instance(this, logfile);
+        this.panel.board_frame.highlight_selected_button();
         screen_messages.set_status_message(resources.getString("drag_menu"));
     }
 
@@ -1504,6 +1507,7 @@ public class BoardHandling
         {
             return;
         }
+        this.panel.board_frame.highLightAutoroute();
         board.generate_snapshot();
         this.interactive_action_thread = InteractiveActionThread.get_batch_autorouter_instance(this);
         this.interactive_action_thread.start();

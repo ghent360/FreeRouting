@@ -34,14 +34,11 @@ class BoardMenuBar extends javax.swing.JMenuBar
         BoardMenuBar menubar = new BoardMenuBar();
         menubar.file_menu = BoardMenuFile.get_instance(p_board_frame, p_session_file_option);
         menubar.add(menubar.file_menu);
-        javax.swing.JMenu display_menu = BoardMenuDisplay.get_instance(p_board_frame);
-        menubar.add(display_menu);
-        javax.swing.JMenu parameter_menu = BoardMenuParameter.get_instance(p_board_frame);
-        menubar.add(parameter_menu);
-        javax.swing.JMenu rules_menu = BoardMenuRules.get_instance(p_board_frame);
-        menubar.add(rules_menu);
-        javax.swing.JMenu info_menu = BoardMenuInfo.get_instance(p_board_frame);
-        menubar.add(info_menu);
+        javax.swing.JMenu routingMenu = new BoardMenuRouting(p_board_frame);
+        menubar.add(routingMenu);
+        javax.swing.JMenu zoomMenu = new BoardMenuZoom(p_board_frame);
+        menubar.add(zoomMenu);
+
         javax.swing.JMenu utilities_menu = BoardMenuUtilities.get_instance(p_board_frame);
         menubar.add(utilities_menu);
         javax.swing.JMenu help_menu = new BoardMenuHelpReduced(p_board_frame);

@@ -102,15 +102,16 @@ public class WindowUnconnectedRoute extends WindowObjectListWithFilter
     
     protected void select_instances()
     {
-        Object[] selected_list_values = list.getSelectedValues();
-        if (selected_list_values.length <= 0)
+        //Object[] selected_list_values = list.getSelectedValues();
+        java.util.List selected_list_values =list.getSelectedValuesList();
+        if (selected_list_values.size() <= 0)
         {
             return;
         }
         Set<board.Item> selected_items = new java.util.TreeSet<board.Item>();
-        for (int i = 0; i < selected_list_values.length; ++i)
+        for (int i = 0; i < selected_list_values.size(); ++i)
         {
-            selected_items.addAll(((UnconnectedRouteInfo)selected_list_values[i]).item_list);
+            selected_items.addAll(((UnconnectedRouteInfo)selected_list_values.get(i)).item_list);
         }
         interactive.BoardHandling board_handling = board_frame.board_panel.board_handling;
         board_handling.select_items(selected_items);

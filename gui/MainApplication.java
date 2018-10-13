@@ -41,7 +41,7 @@ public class MainApplication extends javax.swing.JFrame
         boolean autoSaveSpectraSessionFileOnExit = false;
         String designFileName = null;
         String designDirName = null;
-        java.util.Locale current_locale = java.util.Locale.ENGLISH;
+        java.util.Locale currentLocale = java.util.Locale.ENGLISH;
         for (int i = 0; i < p_args.length; ++i)
         {
             if (p_args[i].startsWith("-de"))
@@ -66,7 +66,7 @@ public class MainApplication extends javax.swing.JFrame
             {
                 if (p_args.length > i + 1 && p_args[i + 1].startsWith("d"))
                 {
-                    current_locale = java.util.Locale.GERMAN;
+                    currentLocale = java.util.Locale.GERMAN;
                 }
             }
             else if (p_args[i].startsWith("-s"))
@@ -95,12 +95,12 @@ public class MainApplication extends javax.swing.JFrame
             }
         }
 
-        java.util.ResourceBundle resources = java.util.ResourceBundle.getBundle("gui.resources.MainApplication", current_locale);
+        java.util.ResourceBundle resources = java.util.ResourceBundle.getBundle("gui.resources.MainApplication", currentLocale);
         if (designFileAsParameter)
         {
 
-            DesignFile design_file = DesignFile.get_instance(designFileName);
-            if (design_file == null)
+            DesignFile designFile = DesignFile.get_instance(designFileName);
+            if (designFile == null)
             {
                 System.out.print(resources.getString("message_6") + " ");
                 System.out.print(designFileName);
@@ -108,18 +108,17 @@ public class MainApplication extends javax.swing.JFrame
                 return;
             }
             String message = resources.getString("loading_design") + " " + designFileName;
-            WindowMessage welcome_window = WindowMessage.show(message);
-            final BoardFrame new_frame =
-                    create_board_frame(design_file, autoSaveSpectraSessionFileOnExit, debugOption, current_locale);
-            welcome_window.dispose();
-            if (new_frame == null)
+            WindowMessage welcomeWindow = WindowMessage.show(message);
+            final BoardFrame newFrame = createBoardFrame(designFile, autoSaveSpectraSessionFileOnExit, debugOption, currentLocale);
+            welcomeWindow.dispose();
+            if (newFrame == null)
             {
                 System.out.print(resources.getString("message_6") + " ");
                 System.out.print(designFileName);
                 System.out.println(" " + resources.getString("message_7"));
                 Runtime.getRuntime().exit(1);
             }
-            new_frame.addWindowListener(new java.awt.event.WindowAdapter()
+            newFrame.addWindowListener(new java.awt.event.WindowAdapter()
             {
                 public void windowClosed(java.awt.event.WindowEvent evt)
                 {
@@ -130,24 +129,23 @@ public class MainApplication extends javax.swing.JFrame
         else
         {
 
-            DesignFile design_file = DesignFile.open_dialog(designDirName);
+            DesignFile designFile = DesignFile.open_dialog(designDirName);
 
-            if (design_file == null)
+            if (designFile == null)
             {
                 String message1 = resources.getString("message_3")+" ";
                 int option = javax.swing.JOptionPane.showConfirmDialog(null, message1 , "error", 0,javax.swing.JOptionPane.ERROR_MESSAGE);
                 Runtime.getRuntime().exit(1);
             }
 
-            String message = resources.getString("loading_design") + " " + design_file.get_name();
-            WindowMessage welcome_window = WindowMessage.show(message);
-            welcome_window.setTitle(message);
-            BoardFrame new_frame =
-                    create_board_frame(design_file, autoSaveSpectraSessionFileOnExit, debugOption, current_locale);
-            welcome_window.dispose();
-            if (new_frame == null) Runtime.getRuntime().exit(1);
+            String message = resources.getString("loading_design") + " " + designFile.get_name();
+            WindowMessage welcomeWindow = WindowMessage.show(message);
+            welcomeWindow.setTitle(message);
+            BoardFrame newFrame = createBoardFrame(designFile, autoSaveSpectraSessionFileOnExit, debugOption, currentLocale);
+            welcomeWindow.dispose();
+            if (newFrame == null) Runtime.getRuntime().exit(1);
 
-            new_frame.addWindowListener(new java.awt.event.WindowAdapter()
+            newFrame.addWindowListener(new java.awt.event.WindowAdapter()
             {
                 public void windowClosed(java.awt.event.WindowEvent evt)
                 {
@@ -164,37 +162,34 @@ public class MainApplication extends javax.swing.JFrame
      * Creates a new board frame containing the data of the input design file.
      * Returns null, if an error occured.
      */
-    static private BoardFrame create_board_frame(DesignFile p_design_file,
-            boolean autoSaveSpectraSessionFileOnExit, boolean p_is_test_version, java.util.Locale p_locale)
+    static private BoardFrame createBoardFrame(DesignFile designFile,
+            boolean autoSaveSpectraSessionFileOnExit, boolean debugOption, java.util.Locale currentLocale)
     {
-        java.util.ResourceBundle resources =
-                java.util.ResourceBundle.getBundle("gui.resources.MainApplication", p_locale);
+        java.util.ResourceBundle resources = java.util.ResourceBundle.getBundle("gui.resources.MainApplication", currentLocale);
 
-        java.io.InputStream input_stream = p_design_file.get_input_stream();
-        if (input_stream == null) return null;
+        java.io.InputStream inputStream = designFile.get_input_stream();
+        if (inputStream == null) return null;
 
-        TestLevel test_level;
-        if (p_is_test_version) test_level = TestLevel.CRITICAL_DEBUGGING_OUTPUT;
-        else test_level = TestLevel.RELEASE_VERSION;
+        TestLevel testLevel;
+        if (debugOption) testLevel = TestLevel.CRITICAL_DEBUGGING_OUTPUT;
+        else testLevel = TestLevel.RELEASE_VERSION;
 
-        BoardFrame new_frame = new BoardFrame(p_design_file, autoSaveSpectraSessionFileOnExit, test_level, p_locale);
-        boolean read_ok = new_frame.read(input_stream, p_design_file.is_created_from_text_file(), null);
+        BoardFrame newFrame = new BoardFrame(designFile, autoSaveSpectraSessionFileOnExit, testLevel, currentLocale);
+        boolean read_ok = newFrame.read(inputStream, designFile.is_created_from_text_file(), null);
         if (!read_ok)  return null;
 
         //new_frame.menubar.add_design_dependent_items();
-        if (p_design_file.is_created_from_text_file())
+        if (designFile.is_created_from_text_file())
         {
             // Read the file  with the saved rules, if it is existing.
 
-            String file_name = p_design_file.get_name();
+            String file_name = designFile.get_name();
             String[] name_parts = file_name.split("\\.");
             String confirm_import_rules_message = resources.getString("confirm_import_rules");
-            DesignFile.read_rules_file(name_parts[0], p_design_file.get_parent(),
-                    new_frame.board_panel.board_handling,
-                    confirm_import_rules_message);
-            new_frame.refresh_windows();
+            DesignFile.read_rules_file(name_parts[0], designFile.get_parent(), newFrame.board_panel.board_handling, confirm_import_rules_message);
+            newFrame.refresh_windows();
         }
-        return new_frame;
+        return newFrame;
     }
 
 
@@ -204,5 +199,5 @@ public class MainApplication extends javax.swing.JFrame
     /**
      * Change this string when creating a new version
      */
-    static final String VERSION_NUMBER_STRING = "1.2.45";
+    static final String VERSION_NUMBER_STRING = "1.2.46";
 }

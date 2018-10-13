@@ -24,6 +24,7 @@ import datastructures.FileFilter;
 
 /**
  *  File functionality
+ * file i/o
  *
  * @author Alfons Wirtz
  */

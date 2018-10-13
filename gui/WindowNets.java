@@ -76,15 +76,16 @@ public class WindowNets extends WindowObjectListWithFilter
     
     protected void select_instances()
     {
-        Object[] selected_nets = list.getSelectedValues();
-        if (selected_nets.length <= 0)
+        //Object[] selected_nets = list.getSelectedValues();
+        java.util.List selected_nets =list.getSelectedValuesList();
+        if (selected_nets.size() <= 0)
         {
             return;
         }
-        int [] selected_net_numbers = new int[selected_nets.length];
-        for (int i = 0; i < selected_nets.length; ++i)
+        int [] selected_net_numbers = new int[selected_nets.size()];
+        for (int i = 0; i < selected_nets.size(); ++i)
         {
-            selected_net_numbers[i] = ((Net) selected_nets[i]).net_number;
+            selected_net_numbers[i] = ((Net) selected_nets.get(i)).net_number;
         }
         board.RoutingBoard routing_board = board_frame.board_panel.board_handling.get_routing_board();
         java.util.Set<board.Item> selected_items = new java.util.TreeSet<board.Item>();
@@ -115,8 +116,9 @@ public class WindowNets extends WindowObjectListWithFilter
     {
         public void actionPerformed(java.awt.event.ActionEvent p_evt)
         {
-            Object[] selected_nets = list.getSelectedValues();
-            if (selected_nets.length <= 0)
+            //Object[] selected_nets = list.getSelectedValues();
+            java.util.List selected_nets =list.getSelectedValuesList();
+            if (selected_nets.size() <= 0)
             {
                 return;
             }
@@ -134,9 +136,9 @@ public class WindowNets extends WindowObjectListWithFilter
                 return;
             }
             rules.NetClass selected_class = (rules.NetClass) selected_value;
-            for (int i = 0; i < selected_nets.length; ++i)
+            for (int i = 0; i < selected_nets.size(); ++i)
             {
-                ((Net) selected_nets[i]).set_class(selected_class);
+                ((Net) selected_nets.get(i)).set_class(selected_class);
             }
             board_frame.refresh_windows();
         }
@@ -146,8 +148,9 @@ public class WindowNets extends WindowObjectListWithFilter
     {
         public void actionPerformed(java.awt.event.ActionEvent p_evt)
         {
-            Object[] selected_nets = list.getSelectedValues();
-            if (selected_nets.length <= 0)
+            //Object[] selected_nets = list.getSelectedValues();
+            java.util.List selected_nets =list.getSelectedValuesList();
+            if (selected_nets.size() <= 0)
             {
                 return;
             }
@@ -157,9 +160,9 @@ public class WindowNets extends WindowObjectListWithFilter
             {
                 board_handling.set_incompletes_filter(i, true);
             }
-            for (int i = 0; i < selected_nets.length; ++i)
+            for (int i = 0; i < selected_nets.size(); ++i)
             {
-                board_handling.set_incompletes_filter(((Net) selected_nets[i]).net_number, false);
+                board_handling.set_incompletes_filter(((Net) selected_nets.get(i)).net_number, false);
             }
             board_frame.board_panel.repaint();
         }

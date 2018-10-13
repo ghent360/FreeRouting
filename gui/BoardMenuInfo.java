@@ -31,7 +31,7 @@ public class BoardMenuInfo extends javax.swing.JMenu
     {
         final BoardMenuInfo info_menu = new BoardMenuInfo(p_board_frame);
         
-        info_menu.setText(info_menu.resources.getString("info"));
+        info_menu.setText("Design Info");
         
         javax.swing.JMenuItem package_window = new javax.swing.JMenuItem();
         package_window.setText(info_menu.resources.getString("library_packages"));

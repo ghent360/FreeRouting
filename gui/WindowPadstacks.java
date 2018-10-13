@@ -64,15 +64,16 @@ public class WindowPadstacks extends WindowObjectListWithFilter
     
     protected void select_instances()
     {
-        Object[] selected_padstacks = list.getSelectedValues();
-        if (selected_padstacks.length <= 0)
+        //Object[] selected_padstacks = list.getSelectedValues();
+        java.util.List selected_padstacks =list.getSelectedValuesList();
+        if (selected_padstacks.size() <= 0)
         {
             return;
         }
         java.util.Collection<Padstack> padstack_list = new java.util.LinkedList<Padstack>();
-        for (int i = 0; i < selected_padstacks.length; ++i)
+        for (int i = 0; i < selected_padstacks.size(); ++i)
         {
-            padstack_list.add((Padstack)selected_padstacks[i]);
+            padstack_list.add((Padstack)selected_padstacks.get(i));
         }
         board.RoutingBoard routing_board = board_frame.board_panel.board_handling.get_routing_board();
         java.util.Set<board.Item> board_instances = new java.util.TreeSet<board.Item>();
