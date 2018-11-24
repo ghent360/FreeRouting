@@ -175,9 +175,9 @@ public abstract class WindowNetSamples extends BoardSubWindow
         {
             return null;
         }
-        DesignFile design_file = DesignFile.get_instance("sharc_routed.dsn", true);
+        DesignFile design_file = DesignFile.get_instance("sharc_routed.dsn");
         BoardFrame new_frame =
-                new BoardFrame(design_file, BoardFrame.Option.WEBSTART, board.TestLevel.RELEASE_VERSION,
+                new BoardFrame(design_file, true, board.TestLevel.RELEASE_VERSION,
                 p_locale, false);
         boolean read_ok = new_frame.read(zip_input_stream, true, null);
         if (!read_ok)

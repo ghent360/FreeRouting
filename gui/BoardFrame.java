@@ -20,6 +20,9 @@ import interactive.ScreenMessages;
 
 import java.io.File;
 
+import javax.help.HelpBroker;
+import javax.help.HelpSet;
+
 import datastructures.FileFilter;
 import datastructures.IdNoGenerator;
 
@@ -673,6 +676,9 @@ public class BoardFrame extends javax.swing.JFrame
     
     
     DesignFile design_file = null;
+    
+    static HelpSet help_set = null;
+    static HelpBroker help_broker = null;
     
     static final String [] log_file_extensions = { "log" };
     
